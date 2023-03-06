@@ -56,27 +56,27 @@ console.log(`Я хочю купити ${message}`);
  message = prompt('Скільки буде 7+15?');
 
  //Рішення if statement
-// if(Number(message)===22 || Number(message)=== -8 || message==="Я не робот"){
-//   message="Успіх";
-// }else{
-//   message="Ви робот !";
-// }
-// console.log(message);
+if(Number(message)===22 || Number(message)=== -8 || message==="Я не робот"){
+  message="Успіх";
+}else{
+  message="Ви робот !";
+}
+console.log(message);
 
 
-// //switch statement
-// switch(true) {
-//   case Number(message)=== 22 :
-//   case Number(message)=== -8 :
-//   case message==='Я не робот' :    
-//     console.log("Успіх");
-//     break;
-//   default:
-//     console.log("Ви робот !");   
-// }
+//switch statement
+switch(true) {
+  case Number(message)=== 22 :
+  case Number(message)=== -8 :
+  case message==='Я не робот' :    
+    console.log("Успіх");
+    break;
+  default:
+    console.log("Ви робот !");   
+}
 
-// // //Рішення тернарним оператором
-// console.log(`${Number(message)=== 22 || Number(message)=== -8 || message==='Я не робот' ? 'Успіх' : 'Ви робот !' }`);
+//Рішення тернарним оператором
+console.log(`${Number(message)=== 22 || Number(message)=== -8 || message==='Я не робот' ? 'Успіх' : 'Ви робот !' }`);
 
 //Вкладений switch в if
 if(message==='Я не робот'){
