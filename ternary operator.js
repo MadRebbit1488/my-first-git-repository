@@ -13,8 +13,6 @@ if(10 > 0 ){
    console.log('Не більше 0');
 }
 
-
-
 //Прикад задачі в if statement
 // В нас є прайс
 let bmwX3Price = 100000;
@@ -50,40 +48,47 @@ if(budget > bmwX3Price ){
 
 console.log(`Я хочю купити ${message}`);
 
- /* Таку конструкцію читати складніше , так що по можливості в даних випадках кращє використовувати switch або if...else statement
- */
 
 // ПРАКТИЧНЕ
- /* Методом prompt отримайте відповідь користувача на питання "Скільки буде 7+ або -15". Якщо відповіль правильна виведіть в консоль "Успіх", якщо ні -"Ви робот !", а якщо він введе "Я не робот", то також "Успіх". 
+/* Методом prompt отримайте відповідь користувача на питання "Скільки буде 7+ або -15". Якщо відповіль правильна виведіть в консоль "Успіх", якщо ні -"Ви робот !", а якщо він введе "Я не робот", то також "Успіх". 
   */
 
- message = prompt('Скільки буде 7+15?', '');
+ message = prompt('Скільки буде 7+15?');
 
  //Рішення if statement
- if(message==='22' || message==='8'){
-    message="Успіх";
-}else if(message==="Я не робот"){
-   message="Успіх";
+// if(Number(message)===22 || Number(message)=== -8 || message==="Я не робот"){
+//   message="Успіх";
+// }else{
+//   message="Ви робот !";
+// }
+// console.log(message);
+
+
+// //switch statement
+// switch(true) {
+//   case Number(message)=== 22 :
+//   case Number(message)=== -8 :
+//   case message==='Я не робот' :    
+//     console.log("Успіх");
+//     break;
+//   default:
+//     console.log("Ви робот !");   
+// }
+
+// // //Рішення тернарним оператором
+// console.log(`${Number(message)=== 22 || Number(message)=== -8 || message==='Я не робот' ? 'Успіх' : 'Ви робот !' }`);
+
+//Вкладений switch в if
+if(message==='Я не робот'){
+  console.log("Успіх");
 }else{
-  message="Ви робот !";
+  message = Number(message);
+  switch(message){
+    case 22:
+    case -8:
+      console.log("Успіх");
+      break;
+    default: 
+      console.log("Ви робот !"); 
+    }
 }
-console.log(message);
-
-
-//switch statement
-switch(true) {
-  case message==='22' :
-  case message==='8' :  
-    console.log("Успіх");
-    break;
-  case message==='Я не робот' : 
-    console.log("Успіх");
-    break;
-  default:
-    console.log("Ви робот !");   
-}
-
-
-//Рішення тернарним оператором
-console.log(`${message==='22' || message==='8' ? 'Успіх' : message==='Я не робот' ? 'Успіх' : 'Ви робот' }`);
-
