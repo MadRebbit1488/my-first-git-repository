@@ -96,3 +96,33 @@ switch (true) {
       console.log('Нуль');
 
 }
+
+
+
+//
+// Напишіть програму яка приймає два цілих числа і відображає найбільше
+let num1, num2;
+num1 = Number(prompt('Введіть перше ціле число', "0"));
+num2 = Number(prompt('Введіть друге ціле число', "0"));
+
+if(num1 > num2){
+  console.log("Із чисел " + num1 + " і " + num2 + " більше це " + num1 + ".");
+} else if(num2 > num1){
+  console.log("Із чисел " + num1 + " і " + num2 + " більше це " + num2 + ".");
+}else{
+  console.log("Числа " + num1 + " і " + num2 + " рівні."); 
+}
+//Оттакий розв'язок мені зрозумілий
+
+
+// num1 = window.prompt('Введіть перше ціле число', "0");
+// num2 = window.prompt('Введіть друге ціле число', "0");
+
+// if(parseInt(num1, 10) > parseInt(num2, 10)){
+//   console.log("Із чисел" + num1 + "і" + num2 + "більше це" + num1 + ".");
+// }else if(parseInt(num2, 10) > parseInt(num1, 10)){
+//   document.writeIn("Із чисел" + num1 + " і " + num2 + "більше це" + num2 + ".");
+// }else{
+//    document.writeIn("Числа" + num1 + " і " + num2 + "рівні.");
+// }
+//Хз як це працює

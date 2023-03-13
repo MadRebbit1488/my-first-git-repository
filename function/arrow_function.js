@@ -2,20 +2,33 @@
 
 /* Пропускаємо ключове слова function , return i {} . Якщо аргумент 1 то лапки можна пропустити
 Те що написано післія стрілки і являється поверненням ф-ції
-Аргумент => те що повертає дана ф-ція  */
-let poft = num => num * num;
-console.log(poft(6));
+СИНТАКСИС:
+let ім'я змінної =(параметр, ..., параметр) = > вираз */
 
-//
-function powerOfTwo(num){
-  console.log(num);
-  return num * num;
-}
-console.log(poft(5));
+// let poft = num => num * num;
+// console.log(poft(6));
 
-//Якщо потрібно розширити ф-цію і внести якісь розрахунки , стрілкова ф-ція змінює свій запис
-poft = num => {
-  console.log(num);
-  return num * num;
+// //
+// function powerOfTwo(num){
+//   console.log(num);
+//   return num * num;
+// }
+// console.log(poft(5));
+
+// //Якщо потрібно розширити ф-цію і внести якісь розрахунки , стрілкова ф-ція змінює свій запис
+// poft = num => {
+//   console.log(num);
+//   return num * num;
+// }
+// console.log(poft(6)); 
+
+//Однорядкова стрілкова ф-ція
+// let getMessage = (text, name) => text + ', ' + name + '!';
+// console.log(getMessage('Привіт', 'Пижмо'));
+
+//Багаторядкова стрілкова ф-ція
+let getMessage = (text, name) =>{
+  let message =  text + ', ' + name + '!';
+  return message;
 }
-console.log(poft(6)); 
+console.log(getMessage('Привіт', 'Пижмо'));
