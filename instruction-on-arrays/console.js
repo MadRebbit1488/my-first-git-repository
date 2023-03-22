@@ -1,19 +1,16 @@
-//Пошук в масиві
+//Домашка
+//Задача №1
+//Яка довжина масиву
+/* 
+let arr = ['Ваня', 'Іван', 'Оля'];
 
-// filter
-//Шукає всі елементи, на яких ф-ція-колбек поверне true
-Синтаксис:
-/* let result = arr.filter(function(item, index, array){
-  якщо true - елемент додається до р-тату, і перебір продовжується
-  якщо нічього не знайдено, повертається порожній масив
-}); */
+let newArr = arr;
+newArr.push('Petia');
+console.log(arr.length); //4
 
-let arrFilter = [
-  {name: 'pypurka', age: 18},
-  {name: 'pyp', age: 23},
-  {name: 'raksakorikorfalapatoriys', age: 'Дофіга'},
-]
-let resultFilter = arrFilter.filter(function(item, index, array){
-  return item.age >= 18;
-});
-console.log(resultFilter);
+//Задача №2
+Створіть масив users з елементами 'Ваня' і 'Іван'. Додайте елемент 'Оля' в кінці. Замініть значення 'Іван'на 'Петя'. Код для пошуку має працювати з масивами будь якої довжини */
+
+let arr = ['1', '2'. '3'];
+arr.push('4'); 
+console.log(arr);
