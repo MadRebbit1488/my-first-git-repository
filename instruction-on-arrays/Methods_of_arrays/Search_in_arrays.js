@@ -1,7 +1,17 @@
 //Пошук в масиві
-//Методи indexOf/lastIndexOf/includes
+/*
+Методи :
+-indexOf/lastIndexOf
+-includes
+-filter
+-find /findIndex/findLastIndex
+-some
+-every */
 //Аналоги строкових методів
-
+______
+______
+//indexOf/lastIndexOf/includes
+//Працюють з елементами замість символів, використовують строгу рівність 
 /* 1.arr.indexOf(item, from) шукає item, починаючи з індекса from, і повертає індекс, на якому був знайдений шукаємий елемент, в іншому випадку -1 
 2.arr.lastIndexOf(item, from) - те ж саме, але шукає справа на ліво.
 3.arr.includes(item, from) - шукає item, починаючи з індекса from, і повертає true, якщо пошук успішний. 
@@ -20,6 +30,9 @@ console.log(arrRaid.includes('Дора', 2)); // false
 //
 //indexOf
 //використовується щоб отримати конкретний індекс
+console.log(arrRaid.lastIndexOf('дора')); //1
+console.log(arrRaid.lastIndexOf('Дора')); // 0
+______
 
 //Є користувач у якого багато ролей
 const roles = ['user', 'admin', 'manager'];
@@ -50,6 +63,12 @@ if(roles.includes('admin')){
    console.log('Доступ надано');
 } 
 
+//includes правильно обробляє NaN, на відмінну від indexOf i lastIndexOf, це пов'язано з тим , що даний метод новіший і використовує сучасніші методи порівняння.
+let arrN = [NaN];
+console.log(arrN.indexOf(NaN)); //1
+console.log(arrN.lastIndexOf(NaN)); // -1
+console.log(arrN.includes(NaN)); // true
+
 __________________________________________________________________________________________________________
 //Пошук в масиві
 //find і findIndex
@@ -68,13 +87,55 @@ let arrFind = [
   {name:'dinorik', age:'Не скажу'},
 ]
 //Звертаємось до змінної якій присвоєний масив об'єктів .find (ф-ція яка виконується для кожного елементу масива(item - елемент масиву, index - ключ/позиція, array - весь масив ))
-let resultOne = arrFind.find(function(item, index, array){
+/* let resultOne = arrFind.find(function(item, index, array){
   return item.name === 'dinorik';
   return item.age === 14;
-});
+}); */
 //Теж саме за допомогою стрілкової ф-ції
-// let resultOne = arrFind.find(item => item.name ==='dinorik'); // Object { name: "dinorik", age: "Не скажу" }
+ let resultOne = arrFind.find(item => item.name ==='dinorik'); // Object { name: "dinorik", age: "Не скажу" }
 console.log(resultOne); // Object { name: "dinorik", age: "Не скажу" }
+
+//Інший приклад
+//Метод find
+//Повертає один елемент масиву який задовольнаяє умову
+
+const users5 = [
+  {
+    name: 'Vitaliy',
+    age: 26,
+    sex: 'male',
+  },
+  {
+    name: 'Jessica',
+    age: 17,
+    sex: 'female',
+  },
+  {
+    name: 'Robert',
+    age: 16,
+    sex: 'male',
+  },
+  {
+    name: 'Sara',
+    age: 20,
+    sex: 'female',
+  },
+  {
+
+    name: 'Rob',
+    age: 34,
+    sex: 'male',
+  },
+];
+
+const foundObj = users5.find(function(item){
+  return item.name === 'Rob';
+});
+
+console.log(foundObj); //Object { name: "Rob", age: 26, sex: "male" }
+
+
+_______
 
 //findIndex
 let resultTwo = arrFind.findIndex(item => item.age === 14);
@@ -82,11 +143,66 @@ console.log(resultTwo); // 0
 
 let resultThree = arrFind.findIndex(item => item.name === 'pizhma');
 console.log(resultThree); // 1
+
+//Інший приклад
+//Метод findIndex
+//Повертає порядковий номер елемента в масиві
+
+const users8 = [
+  {
+    name: 'Vitaliy',
+    age: 26,
+    sex: 'male',
+  },
+  {
+    name: 'Jessica',
+    age: 17,
+    sex: 'female',
+  },
+  {
+    name: 'Robert',
+    age: 16,
+    sex: 'male',
+  },
+  {
+    name: 'Sara',
+    age: 20,
+    sex: 'female',
+  },
+  {
+
+    name: 'Rob',
+    age: 34,
+    sex: 'male',
+  },
+];
+
+const foundObj3 = users8.findIndex(function(item){
+  return item.age === 20; 
+});
+
+console.log(foundObj3); // 4
+
+//Повертає -1 якщо нічього не знайдено
+console.log(arrFind.findIndex(item => item.age == 20)); //-1
+
+
+//findLastIndex
+//Має тойже синтаксис як findIndex, але шукає справа на ліво
+let arrFind1 = [
+  {name:'pypurka', age:14},
+  {name:'pizhma', age:19},
+  {name:'dinorik', age:14},
+]
+
+
+console.log(arrFind1.findIndex(item => item.age == 14)); //0
+console.log(arrFind1.findLastIndex(item => item.age == 14)); //2
 __________________________________________________________________________________________________________
 //Пошук в масиві
 
 // filter
-//Шукає всі елементи, на яких ф-ція-колбек поверне true.Схожий на метод find, але не припиняє свою роботу в той момент коли задоволена задана умова. А продовжує її і повертає новий масив із всіх елементів які задовольняють вказану умову
+//Шукає всі елементи, на яких ф-ція-колбек поверне true.Схожий на метод find, але не припиняє свою роботу в той момент коли задоволена задана умова. А продовжує її і повертає новий масив із всіх елементів які задовольняють вказану умову не модифікуючи вихідний масив
 /*Синтаксис:
  let result = arr.filter(function(item, index, array){
   якщо true - елемент додається до р-тату, і перебір продовжується
@@ -129,4 +245,51 @@ function isPrime (num) {
 }
 
 console.log(array.filter(isPrime)); //Array(6) [ 2, 3, 5, 7, 11, 13  */
+
+//Інший приклад
+
+//Метод filter
+//Фільтрує елементи масиву за заданою умовою
+
+const users2 = [
+  {
+    name: 'Vitaliy',
+    age: 26,
+    sex: 'male',
+  },
+  {
+    name: 'Jessica',
+    age: 17,
+    sex: 'female',
+  },
+  {
+    name: 'Robert',
+    age: 16,
+    sex: 'male',
+  },
+  {
+    name: 'Sara',
+    age: 20,
+    sex: 'female',
+  },
+  {
+
+    name: 'Rob',
+    age: 34,
+    sex: 'male',
+  },
+];
+
+
+//index - необов'язковий параметр, потрібен тільки для пошуку по індексу
+//Умова - к-ть користувачів старше 18 років
+const adultsUsers = users2.filter(function(item) {
+  return item.age >= 18 ;
+});
+
+console.log(adultsUsers);  //0: Object { name: "Vitaliy", age: 26, sex: "male" }
+                           //1: Object { name: "Sara", age: 20, sex: "female" }
+​                           //2: Object { name: "Rob", age: 34, sex: "male" }
+
+
 __________________________________________________________________________________________________________
