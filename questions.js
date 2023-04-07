@@ -13,7 +13,6 @@
 -flat
 -flatMap
 -keys
--some +
 -toLocaleString */
 
 /* Методи які пройшли:
@@ -37,6 +36,7 @@
 -lastIndexOf
 -sort
 -toString 
--findLastIndex*/
+-findLastIndex
+-some*/
 
 //Глобальная isFinite() 
