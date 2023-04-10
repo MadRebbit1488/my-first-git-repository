@@ -237,3 +237,38 @@ operationss1.sort((a, b) => {
 });
 console.log(operationss1); //[480, 100, 50, -100, -300]
 __________________________________________________________________________
+
+let arr = [1, 2];
+let agg = 0;
+arr.forEach((el, i) => agg += el + i );
+console.log(agg); //4
+
+//
+ arr = [1, 2];
+let res = arr.map(e => e * 2).filter(e => e > 3);
+console.log(res); //[4]
+
+// Чьому помилка ?
+let arr = [1, 2];
+let res = arr.reduce((acc, el) => acc += el).map(e => e * 2)
+console.log(res);// Помилка
+
+//
+let arr = [1, 2, 3];
+let res = arr.map(e => e * 2).find(e => e < 5);
+console.log(res); //2
+
+//
+// let arr = [1, 2, 3];
+// let res = arr.map(e => [e * 2]);
+// //Виведеться масив з підмасивами чисел
+// console.log(res); // [[2], [4], [6]];
+
+let arr = [1, 2, 3];
+let res = arr.map(e => [e * 2]).flat().reduce((acc, el) => acc -= el, 0)
+console.log(res); // -12
+
+//
+let arr = [1, 2, 10, 15];
+arr.sort()
+console.log(arr); //[1, 10, 15, 2]
