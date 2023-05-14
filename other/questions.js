@@ -2,6 +2,9 @@
 //Проміси, замикання
 //React/ Vue/Anjular
 //Бібліотеки: Meteor / next / express  /koa / socket.io /
+//UTF-16
+//ispred
+//document.querySelector('.elem')
 
 //Що таке Math.random ?
 

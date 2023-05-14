@@ -7,5 +7,9 @@
 -Math.pow(a, n) - повертає a в n-й ступені.
 -Math.random() - повертає випадкове число в діапазоні від 0 до 1
 -Math.round(x) - повертає значення число, округлене до найближчого цілого
-
 */
+
+//Math.trunc - вбудована ф-ція, яка видаляє десятичну частину
+console.log(String(Math.trunc(Number('49')))); //49
+console.log(String(Math.trunc(Number('+49')))); //49
+console.log(String(Math.trunc(Number('1.2')))); //1

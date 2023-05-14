@@ -76,11 +76,11 @@ congratsIfMoreThan100(usersArr);
 _________________________________________________________________________
 //Задача №3
 //Яка довжина масиву 
-let arr = ['Ваня', 'Іван', 'Оля'];
+let arr1 = ['Ваня', 'Іван', 'Оля'];
 
-let newArr = arr;
-newArr.push('Petia');
-console.log(arr.length); //4
+let newArr1 = arr1;
+newArr1.push('Petia');
+console.log(arr1.length); //4
 _________________________________________________________________________
 //Задача №4
 /*-Створіть масив users з елементами 'Ваня' і 'Іван'. 
@@ -350,7 +350,7 @@ console.log(Calculator.calculate('3+4'));
 _________________________________________________________________________
 //Задача №19
 //Трансформувати в масив імен
- 
+
 let vasya = {name: 'Вася', age: 25};
 let petya = {name: 'Петя', age: 30};
 let masha = {name: 'Маша', age: 28};
@@ -492,14 +492,14 @@ function groupById (array) {
   }, {})
 }
 
-let users = [
+let users1 = [
   {id: 'john', name: 'John Smith', age: 20},
   {id: 'ann', name: 'Ann Smith', age: 24},
   {id: 'pete', name: 'Pete Peterson', age: 31},
 ];
 
 
-let usersById = groupById (users);
+let usersById = groupById (users1);
 
 console.log(usersById);/* Object {  
               ann: Object { id: "ann", name: "Ann Smith", age: 24 }

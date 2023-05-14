@@ -3,13 +3,14 @@
 -charAt
 -indexOf/lastIndexOf/includes
 -join/split
--slice
+-slice / substring / substr
 -startsWith/endsWith
 -toLowerCase/toUpperCase
--riplace/riplaceAll
+-replace/replaceAll
 -trim/trimStart/trimEnd
 -padStart/padEnd
 -repeat
+-codePointAt / fromCodePoint / localeCompare
  */
 
 /* Внутрішній формат для рядка - UTF-16, незалежно від
@@ -68,14 +69,31 @@ console.log(userName.lastIndexOf('а')); //11
 console.log(userName.includes('а')); // true
 //Можна вказаи позицію з якої почнеться пошук
 console.log(userName.includes('В', 1)); //false
-
+______
 //Вивід частин рядка
 //SLICE - обрізає рядок
 //Масив обрізався далі від 4 індексу 
 console.log(userName.slice(4));// Пупкіна
 console.log(userName.slice(5, 8)); //Пуп
 console.log(userName.slice(-7, -4)); //Пуп
-
+//SUBSTRING
+/* substring - повертає частину рядка між start  
+і end(не враховуючи end)
+Майже те саме, що  і slice, але можна задати start 
+більше за end . Тобто працює так начебто аргументи 
+обмінялись місцями.
+Не підтримує негативні значення, вони інтерпретуються як 0
+*/
+//const userName = 'Вася Пoпкіна';
+console.log(userName.substring(5)); //Пoпкіна
+console.log(userName.substring(5, 8)); //Пoп
+console.log(userName.substring(8, 5)); //Пoп
+//SUBSTR
+/* str.substr(start [, length]) - вказується  довжина замість кінцевої позиції. Якщо перший аргумент негативний, тоді позиція оприділяється з кінця.
+Його підтримують тільки браузерні движки JS, і використовувати його не рекомедується. Хочя на практиці підтримується кругом */
+console.log(userName.substr(5, 5)) //Пoпкі
+console.log(userName.substr(-7, 5)) //Пoпкі
+______
 
 // Використання перевірок
 const str = 'Купила баба коника';
@@ -198,3 +216,31 @@ if (~userName1.indexOf('В')){
   }
 /* Зараз такий трюк не використовується, так як він не
 працює із всіма числами. Раціональніше викор метод includes*/
+
+______
+//Порівняння
+//codePointAt
+//Повертає код для символу
+console.log('A'.codePointAt()); //65
+console.log('a'.codePointAt()); //97
+
+//fromCodePoint
+//Створює символ по його коду
+console.log(String.fromCodePoint(97)); //a
+
+//Створення рядка із кодами від 65 до 120
+let str3 = '';
+for (let i = 65; i < 120; i++){
+  str3 +=String.fromCodePoint(i);
+}
+console.log(str3); //ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvw
+
+//localeCompare
+/*Порівнює рядки з урахуванням правил мови 
+Повертає число яке показує, який рядок більший в відповідності з правилами мови :
+-Позитивне якщо str  більше str2
+-Негативне якщо str  менше str2
+-0, якщо всі рівні */
+console.log('Лупа'.localeCompare('Пупа')); //-1
+console.log('Пупа'.localeCompare('Лупа')); //1
+console.log('Пупа'.localeCompare('Пупа')) ///0

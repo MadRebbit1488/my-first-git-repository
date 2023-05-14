@@ -102,3 +102,75 @@ ________________________________________________________________
 let str = 'How are you?';
 console.log(str.split(' ')[1]); //are
 ______________________________________
+//Задача №5
+//Зробіть перший символ заголовним
+//Напишіть ф-цію ucFirst(str), яка повертає рядок str з заголовною першою літерою
+//Мій варіант
+function ucFirst(str) {
+  return str.replace('d', 'D');
+}
+console.log(ucFirst('dio')); //Dio
+
+//Інші віріанти
+//Перестворення рядка на основі існуючього
+let str4 = 'dio';
+let newStr = str4[0].toUpperCase() + str4.slice(1);
+console.log(newStr); //Dio
+
+//
+function ucFirst(str) {
+  if(!str) return str;
+
+  return str[0].toUpperCase() + str.slice(1);
+}
+console.log(ucFirst('dio')); //Dio
+
+/* if(!str) return str;
+if(!str) - це умова, яка первіряє чи str має false. Якщо таке значення є, тобто null, undefined, false, 0, NaN або порожній рядок, то він ввожається неправдивим.
+return str - вказує на повернення значення  str з ф-ції. Якщо str має false значення, то він повернеться з ф-ції без змін  */
+________________________________________________________________
+//Задача №6
+//Перевірка на спам
+/* Напишіть ф-цію  checkSpam(str), яка повертає true, якщо str містить 
+'viagra' або 'XXX' , а інакше false. Ф-ція має бути нечутливою до регістру*/
+
+function checkSpam(str) {
+ let lowerStr = str.toLowerCase(); //Переводить входження в нижній регістр
+ return lowerStr.includes('viagra') || lowerStr.includes('xxx');
+}
+console.log(checkSpam('buy ViAgRA now')); //true
+console.log(checkSpam('free xxxxx')); //true
+console.log(checkSpam("innocent rabbit")); //false
+________________________________________________________________
+//Задача №7
+/* Створіть ф-цію truncate(str, maxlength),яка первіряє довжину рядка str 
+і якщо вона перевершує  maxlength, заміняє кінець str на "…", так щоб її довжина стала рівною maxlength.
+Р-татом ф-ції має бути той же рядок, якщо зменшення не потрібно*/
+
+function truncate(str, maxlength) {
+  // if(str.length > maxlength) {
+  //   return str.replace(str.slice(maxlength), '...');
+  // } else {
+  //   return str;
+  // }
+
+  return (str.length > maxlength) ?
+  str.slice(0, maxlength -1) + '...' : str;
+}
+console.log(truncate('Ось, що мені хотілось би сказати на цю тему:', 20)); //Ось, що мені хотілос...
+console.log(truncate('Всім привіт!', 20)); //Всім привіт!
+________________________________________________________________
+//Задача №8
+//Вивід числа
+/* Є вартість у вигляді рядка "$120". Тобто спочатку іде знак валюти, а потім число.
+Створіть ф-цію  extractCurrencyValue(str), яка буде із такого рядка виділяти числове значення і повертати його*/
+
+function extractCurrencyValue(str){
+return +str.slice(1);
+}
+/*+str.slice(1);
+Виклик методу slice вірізає підрядок з рядка, починаючи з заданого індексу і повертає його як новий рядок.
+'+' перетворює отримане значення в число  */
+console.log(extractCurrencyValue('$120') === 120); //true
+________________________________________________________________
+//Задача №9
