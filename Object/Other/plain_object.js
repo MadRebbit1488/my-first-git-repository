@@ -192,60 +192,6 @@ for (const key of Object.keys(cities)) {
 console.log(sumTemp / citiesCount); //22.5
 
 ________________________________________________________________________
-//Деструктуризація i rest / SPREAD
-
-//Масив
-const arr = [1, 2, 3];
-const [z, y, x] = arr;
-console.log(y); //2
-
-//Об'єкт
-let user = {
-  name: 'Pypa',
-  age: 40,
-  city: 'Zalypa',
-};
-const {city, name} = user;
-console.log(name); // Pypa
-console.log(city); // Zalypa
-//За допомогою деструктуризації зручно витягувати тільки потрібні властивості 
-
-//REST(решта) оператор {...} - створює масив даних з залишкових елементів. Використовується коли потрібно непотрібні властивості закинути в інший об'єкт
-const {age, ...userWithoutAge} = user;
-console.log(userWithoutAge); //{name: 'Pypa', city: 'Zalypa'}
-
-//Вкладання в об'єкт додаткових даних
-const additionalData = {
-  skills: ['Кушунька', 'Спатуська'],
-  creditCard: '6248-1368-1349-4976'
-};
-//Потрібно в основний об'єкт вкласти ці дані
-//Звичайний спосіб, робить нові дані вкладеним об'єктом
-user.additionalData = additionalData;
-console.log(user); //{name: 'Pypa', age: 40, city: 'Zalypa', additionalData: {…}}
-// 
-user.skills = additionalData.skills;
-console.log(user); //{name: 'Pypa', age: 40, city: 'Zalypa', skills: ['Кушунька', 'Спатуська']}
-
-//SPREAD(поширювати)
-//Додавання більшої к-ті властивостей, з використанням ...spread оператора
-user = {
-  ...user,
-  ...additionalData,
-}
-console.log(user); //{name: 'Pypa', age: 40, city: 'Zalypa', skills: Array(2), creditCard: '6248-1368-1349-4976'}
-/* '...' вказує на те, що потрібно взяти всі властивості із user і покластив user. Аналогічно із additionalData, кладе всі новоотримані властивості в  user*/
-
-/* Константа захищяє від змін лише саму змінну,а не її вміст. Тому можна додавати окремі властивості, але неможна перезаписати , як було в прикладі з оператором  SPREAD
-Так можна:
-user.test = 'dfevreb';
-Не можна:
-user = {
-  ...user,
-  ...lknojfo,
-}
-*/
-________________________________________________________________________
 
 
 //Оператор in 

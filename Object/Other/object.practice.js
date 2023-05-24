@@ -333,60 +333,6 @@ console.log(makePairs2(data)); //[['a', 1], ['b', 2]]
 console.log(makePairs3(data)); //[['a', 1], ['b', 2]]
 ___________________________________________________________________
 //Задача №13
-//Калькулятор
-/* створ об'єкт calculator з 3 методами:
--read() - читати. Запитує два значення і зберігає їх як властивості об'єкта
--sum() - сумувати. Повертає суму збережених значень
--mul() - умножити. Перемножує збережені значення і повертає р-тат */
-
-let calculator = {
-  sum () {
-    return this.a + this.b;
-  },
-  mul () {
-    return this.a * this.b;
-  },
-  read () {
-    this.a = +prompt('a?', '');
-    this.b = +prompt('b?', '');
-  }   
-};
-calculator.read();
-console.log(calculator.sum());
-console.log(calculator.mul());
-___________________________________________________________________
-//Задача №14
-//Ланцюн викликів
-/* Є об'єкт  ladder (сходи), який дозволяє підійматись і спускатись */
-let ladder = {
-  step: 0,
-  up () {
-    this.step++;
-    //Дописуємо
-    return this;
-  },
-  down () {
-    this.step--;
-    //Дописуємо
-    return this;v
-  },
-  showStep: function () { // показує поточну сходинку
-    console.log(this.step);
-    //Дописуємо
-    return this;
-  }
-};
-// ladder.up();
-// ladder.up();
-// ladder.down();
-// ladder.showStep(); //1
-// ladder.down();
-// ladder.showStep(); //0
-
-//Потрібно змінити код методів up, down і showStep таким чином, щоб їх виклик можна було зробити по ланцюгу. Для цього потрібно дописати  return this;  такий підхід широко використувається в бібліотеках JS
-ladder.up().up().down().showStep().down().showStep();  //1, 0
-___________________________________________________________________
-//Задача №15
 //Дві ф-ції - один об'єкт
 //Чи можливо створити ф-ції А і В, щоб new A() == new B() ?
 let object = {};
@@ -398,117 +344,19 @@ function B () {
 }
 console.log(new A() == new B()); //true
 /* Можливо, так як ф-ція повертає об'єкт, то new поверне його замість this.
-Таким чином вони можуть повертати один і тойже зовнішній оприділений об'єкт */___________________________________________________________________
+Таким чином вони можуть повертати один і тойже зовнішній оприділений об'єкт */
+___________________________________________________________________
+//Задача №14
+
+//Задача №15
+
 //Задача №16
-//Створіть калькулятор за допомогою конструктора new Calculator
-/* Створіть ф-цію - конструктор Calculator, яка створює об'єкт з трьома методами:
-- read() - запитує два значення за допомогою prompt і зберігає значення в властивостях об'єкта
-- sum() - повертає суму цих властивостей
-- mul() - повертає перемножені значення цих властивостей*/
 
-function Calculator () {
-  this.read = function () {
-   this.a = +prompt('a?', '') 
-   this.b = +prompt('b?', '');
-  }
-  this.sum = function () {
-    return this.a + this.b ;
-  } 
-  this.mul = function () {
-    return this.a * this.b ;
-  } 
-  
-}
-
-let calculator1 = new Calculator();
-calculator1.read();
-// Візбмемо число 5
-console.log('Sum = ' + calculator1.sum()); //Sum = 10
-console.log('Mul = ' + calculator1.mul()); //Mul = 25
-___________________________________________________________________
 //Задача №17
-//Створити new Accumulator
-/* Створіть ф-цію конструктор  Accumulator(startingValue).
-Об'єкт який вона створює повинен уміти:
-- Зберігати поточне значення у властивості value. Початкове значення встановлюється в оргументі конструктора startingValue
-- Метод read() повинен використовувати prompt для считування нового числа і додавати його до  value
-Властивість value має предстваляти собою суму всіх введених чисел, з урахуванням початкового значення startingValue*/
-function Accumulator (startingValue) { 
-  this.value = startingValue;
 
-  this.read = function () {
-    this.value +=  +prompt('Скільки потрібно додати ?');
-  };
-}
-let accumulator = new Accumulator(1);
-//Додає введене користувачем значення до поточного значення
-accumulator.read(); 
-accumulator.read();
-//Сума введених значень
-console.log(accumulator.value); //11
-___________________________________________________________________
-//Задача №18
-/* 
-Доповними об'єкт методами для отримання імені:
-  - компанії
-  - сео
-  - співробітника
-  Кращє робити методи на рівні співробітників
-  */
-const company = {
-  name: 'OOO JOJO',
-  
-  employees: [
-    {
-      name: 'Эйсидиси',
-      getName: function () {
-        return this.name;
-  },
-    }
-  ],
 
-  ceo: {
-    name: 'Карс',
-    //контекст this не втрачається, так як nameCEO метод даного об'єкта ceo. Не принципово що об'єкт має батьківський об'єкт, головне що метод викликається саме для ceo
-    getName: function () {
-    return this.name;
-    }
-  },
-  getName: function () {
-    return this.name;
-  },
-  //моє рішення
-  /* nameEmployees: function () {
-    const employeesNames = company.employees.map(function(employees){
-      console.log(this.name)
-    }, company.employees[0]);
-  } */
-};
 
-console.log(company.getName()); //OOO JOJO
-console.log(company.ceo.getName()); // Карс
-console.log(company.employees.map(employees => employees.getName())); //['Эйсидиси']
-___________________________________________________________________
-//Задача №19
-/* Створіть об'єкт користувача з паролем.
-За допомогою ф-ції нищє видаліть пароль зробив ф-цію скидання пароля */
-function removePassword(reset) { //ф-ція скидання пароля
-  if (reset) {
-    this.password = undefined;
-  } else {
-    this.password = '1';
-  }
-}
 
-const userResetPassword = {
-  name: 'Popa',
-  password: 'GhkYbmg5LHU'
-};
 
-//Вказуємо на аргумент this і дефолтний аргумент, так як ми хочемо скинути пароль, true
-const resetUserPassword = removePassword.bind(userResetPassword, true);
-resetUserPassword();
-console.log(userResetPassword); //{name: 'Popa', password: undefined}
-___________________________________________________________________
-//Задача №20
-___________________________________________________________________
+
+

@@ -8,14 +8,14 @@ let ім'я змінної =(параметр, ..., параметр) = > вир
 let poft = num => num * num;
 console.log(poft(6));
 
-// //
+// 
 function powerOfTwo(num){
   console.log(num);
   return num * num;
 }
 console.log(poft(5));
 
-// //Якщо потрібно розширити ф-цію і внести якісь розрахунки , стрілкова ф-ція змінює свій запис
+//Якщо потрібно розширити ф-цію і внести якісь розрахунки , стрілкова ф-ція змінює свій запис
 poft = num => {
   console.log(num);
   return num * num;
