@@ -1,0 +1,258 @@
+/* Використали шрифти до всього HTML-фойлу */
+body {
+  font-family: 'Montserrat', sans-serif;
+  /* Задає сірий тон обідку */
+  background-color: #F5F7FA;
+  /* Відступи від краю екрана */
+  margin: 70px 40px;
+}
+
+
+/* main styles */
+.main {
+  /* Ставить два блоки в одну лінію */
+  display: flex;
+  /* Перевертаєсо лінію яка має дефолтне значення в інший бік якщо блоки стоять не так як потрібно */
+  flex-direction: row-reverse;
+  /* Задаємо колір основному контейнеру */
+  /* Ширина контейнера */
+  width: 1200px;
+  /* Висота */
+  height: 1300px;
+  /* Поміщяємо блок по центру сторінки. 0 - означає що зверху і знизу не потрібні відступи
+  auto - браузер сам порахував якими мають бути відступи і встановиви їх за замовчуванням*/
+  margin: 0 auto;
+  
+}
+              /* main content */
+              .main_content{
+                background-color: #FFFFFF;
+                /* Дає тінь навколо обідка */
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                /* Виставляємо внутрішні відступи контент-блоку */
+                padding: 105px 90px;
+                
+              }
+
+/* Блок про юзера */
+.about {
+  margin-bottom: 40px;
+}
+              .about_position {
+                font-style: normal;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 17px;
+                color: #000000;
+                margin-bottom: 20px;
+              }
+              .about_name {
+                font-style: normal;
+                font-weight: 700;
+                font-size: 45px;
+                line-height: 55px;
+                color: #000000;
+                margin-bottom: 25px;
+              }
+
+              .about_description {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 24px;
+                color: #595959;
+                width: 400px;
+              }
+
+/* Project */
+.projects {
+  /* Відступ від блока Work Experience */
+  margin-bottom: 50px;
+}
+            /* Стиль до заголовків */
+            .title {
+              font-style: normal;
+              font-weight: 700;
+              font-size: 22px;
+              line-height: 27px;
+              color: #000000;
+              margin-bottom: 10px;
+            }
+            /* поправляємо відступи */
+            .projects_list {
+              /* Скидаємо заводські відступи */
+              padding: 0;
+              /* Прописуємо свої */
+              margin-left: 15px;
+            }
+            /* Стилізуємо цифри впорядкованого списку */
+            .project_item {
+              font-style: normal;
+              font-weight: 700;
+              font-size: 14px;
+              line-height: 24px;
+              color: #000000;
+            }
+            /* Стилізуємо посилання  */
+            .project,
+            /* окремо стилізує тег <a> */
+            .project_linc {
+              font-style: normal;
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 24px;
+              color: #595959;
+            }
+            /* Окремо робимо відступи між посиланнями і цифрами */
+            .project_linc {
+              margin-left: 10px;
+            }
+            /* Стилізуємо дужки навколо надписів фреймворків */
+            .project_bracket {
+              font-style: normal;
+              font-weight: 700;
+              font-size: 14px;
+              line-height: 24px;
+              color: #000000;
+            }
+
+/* Work */
+/* Стиль заголовку місця роботи */
+.work_position {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #000000;
+  margin-bottom:  10px;
+}
+              /* Забарвлюємо слова в оранжевий */
+              .organization {
+                font-style: normal;
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 20px;
+                color: #FB6D3A;
+              }
+              /* Час роботи */
+              .period {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 15px;
+                color: #A8A8A8;
+                margin-bottom: 10px;
+              }
+              /* Стилізуємо лінію в часі */
+              .line {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 15px;
+                color: #000000;
+              }
+              /* Налаштовуємо пункти списку */
+              .work_list {
+                /* Скидаємо дефолтні налаштування */
+                padding: 0;
+                /* Налаштовуємо щоб крапки стали під заголовком */
+                margin-left: 15px;
+              }
+              /* Задаємо стиль тексту */
+              .work_list_item {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 24px;
+                color: #595959;
+              }
+/* Освіта */
+.education {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #FB6D3A;
+  margin-bottom: 10px;
+}
+/* Sidebar */
+.sidebar{
+  background-color: #1E2939;
+  /* Додаємо в sidebari відстань від верхньої межі до фотографії */
+  padding-top: 40px;
+  /* Ширина Sidebar*/
+  width: 370px;
+  
+}
+                    /* Стилі для картинки */
+                    .photo{
+                      /* Задаємо фіксовану ширину */
+                      width: 370px;
+                      /* Відступ від картинки до пункту з контактами */
+                      margin-bottom: 50px;
+                    }
+                      /* Якщо до декількох класів викор однакові налаштування, можна зробити спільний запис */
+                      .contacts,
+                      .tech_skills,
+                      .soft_skills {
+                        margin-left: 40px;
+                      }
+                      .contacts {
+                        margin-bottom: 50px;
+                      }
+                      .tech_skills {
+                        margin-bottom: 45px;
+                      }
+                      /* Contacts */
+                      .sidebar_tityle {
+                        /* Задаємо колір і стиль тексту */
+                        color: #FFFFFF;
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 22px;
+                        line-height: 27px;
+                        margin-bottom: 10px;
+                      }
+                      /* Стилізуємо в контактах букви C: і E:. Щоб їх стилізувати їм потрібна обгортка у вигляді тегу */
+                      .contact_type {
+                        color: #FFFFFF;
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 24px;
+                        /* Відстань між контактами і буквами C: і E: */
+                        margin-right: 5px;
+                      }
+                      .contact_linc {
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 24px;
+                        color: #FFFFFF;
+                        opacity: 0.5;
+                      }
+                      .text_skills_list {
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 24px;
+                        color: #FFFFFF;
+                        /* Виставляємо крапки на потрібні місця */
+                        padding: 0;
+                        margin-left: 17px;
+                      }
+
+                      /* Фарбуємо крапки  */
+                      .tech_skills_item {
+                        color: #FB6D3A;
+                      }
+                      /* Фарбуємо текст */
+                      .tech_skills_text {
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 24px;
+                        color: #FFFFFF;
+                      }
+
+
