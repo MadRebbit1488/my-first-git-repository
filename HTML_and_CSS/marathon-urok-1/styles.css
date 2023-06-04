@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap'); 
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Muli', sans-serif;
+  overflow: hidden;
+  margin: 0;
+  background: rgb(94, 25, 65);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  padding:0 20px ;
+}
+
+.slide {
+  height: 80vh;
+  /* Задає заокруглення */
+  border-radius: 20px;
+  /* Відступи між слайдами */
+  margin: 10px;
+  /* Дозволяє взаємодіяти з елементом при наведенні на нього курсором */
+  cursor: pointer;
+  color: #fff;
+  /* Розтягує кожен елемент пропорційно */
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  /* Анімація слайдів */
+  transition: all 500ms ease-in-out;
+}
+
+.slide h3 {
+  position: absolute;
+  font-size: 24px;
+  /* Опускає заголовок донизу */
+  bottom: 20px;
+  left: 20px;
+  /* Прибирає дефолтні відступи */
+  margin: 0;
+  /* Стиль до загловку коли слайд звернутий */
+  opacity: 0;
+}
+
+
+.slide.active {
+  flex: 10;
+}
+
+.slide.active h3 {
+  /*Стиль до загловку коли слайд розгорнутий  */
+  opacity: 1;
+  /* Анімація */
+  /* Спочатку вказуємо яку властивість анімуємо, а потім за який час і ф-ція*/
+  transition: opacity 0.3s ease-in 0.4s ;
+}
