@@ -439,4 +439,343 @@ describe("addBinary(1,2)", function() {
 
 
 //Задача 16
+/* Виконайте функцію, яка приймає параметр рядка та змінює кожне слово в рядку. Усі пробіли в рядку мають бути збережені.
+Приклади
+"This is an example!" ==> "sihT si na !elpmaxe"
+"double  spaces"      ==> "elbuod  secaps */
+function reverseWords(str) {
+  // Розбиваємо рядок на окремі слова і змінюємо кожне слово
+  return str.split(' ').map(function(word){
+    // Розбиваємо слова на окремі символи, змінюємо порядок символів в слові і повертаємо змінене слово
+    return word.split('').reverse().join('');
+    // Повертаємо зінений рядок
+  }).join(' ');
+}
+// 
+return str.split("").reverse().join("").split(" ").reverse().join(" ");
+// 
+return str.split(' ').map( str => str.split('').reverse().join('') ).join(' ');
 //Зразок тесту
+const chai = require("chai");
+const assert = chai.assert;
+chai.config.truncateThreshold=0;
+
+describe("Basic tests", () => {
+  it("Testing for fixed tests", () => {
+    assert.strictEqual(reverseWords('The quick brown fox jumps over the lazy dog.'), 'ehT kciuq nworb xof spmuj revo eht yzal .god');
+    assert.strictEqual(reverseWords('apple'), 'elppa');
+    assert.strictEqual(reverseWords('a b c d'), 'a b c d');
+    assert.strictEqual(reverseWords('double  spaced  words'), 'elbuod  decaps  sdrow');
+  });
+});
+
+
+//Задача 17
+/* Створіть функцію, яка приймає ціле число як аргумент і повертає "Even"для парних чи "Odd"непарних чисел. */
+function evenOrOdd(number){
+  return number % 2 === 0 ? "Even" : "Odd";
+} 
+//
+const even_or_odd = n => (n % 2) ? 'Odd' : 'Even';
+//Зразок тесту
+const chai = require('chai');
+const assert = chai.assert;
+
+describe("Sample tests",() => {
+  
+  it("2 is even", () => {
+    assert.strictEqual(evenOrOdd(2), "Even");
+  });
+  it("7 is odd", () => {
+    assert.strictEqual(evenOrOdd(7), "Odd");
+  });
+  it("-42 is even", () => {
+    assert.strictEqual(evenOrOdd(-42), "Even");
+  });
+  it("-7 is odd", () => {
+    assert.strictEqual(evenOrOdd(-7), "Odd");
+  });
+  it("0 is even", () => {
+    assert.strictEqual(evenOrOdd(0), "Even");
+  });
+});
+
+
+//Задача 18
+/* Розгляньте масив/список овець, де деякі овець можуть бути відсутні на своєму місці. Нам потрібна функція, яка підраховує кількість овець у масиві (true означає наявність).Правильною відповіддю буде 17.
+Підказка: не забудьте перевірити наявність неправильних значень, наприклад null/undefined */
+const arrayOfSheep = [true,  true,  true,  false, true,  true,  true,  true ,true,  false, true,  false,true,  false, false, true ,true,  true,  true,  true ,false, false, true,  true];
+
+function countSheeps(arrayOfSheep) {
+  return arrayOfSheep.reduce((count, sheeps) => {
+    if (sheeps === true) {
+      return count + 1;
+    }
+    return count;
+  },0)
+}
+console.log(countSheeps(arrayOfSheep)); // 17
+//
+return arrayOfSheeps.filter(Boolean).length;
+//
+var array = arrayOfSheeps.reduce((a, b) => a + (b === true?1:0),0);
+  return array;
+
+//Зразок тесту
+const Test = require('@codewars/test-compat');
+
+describe("Tests", () => {
+  it("test", () => {
+var array1 = [true,  true,  true,  false,
+              true,  true,  true,  true ,
+              true,  false, true,  false,
+              true,  false, false, true ,
+              true,  true,  true,  true ,
+              false, false, true,  true ];
+              
+Test.assertEquals(countSheeps(array1), 17, "There are 17 sheeps in total")
+  });
+});
+
+
+//Задача 19
+/* творіть функцію, яка відповідає на питання «Ви граєте на банджо?».
+Якщо ваше ім'я починається з літери "R" або малої букви "r", ви граєте на банджо!
+Функція приймає назву як єдиний аргумент і повертає один із таких рядків:
+name + " plays banjo" 
+name + " does not play banjo"
+Надані імена завжди є дійсними рядками. */
+function areYouPlayingBanjo(name) {
+  // Implement me
+  if (name[0] === 'R' || name[0] === 'r') {
+    return name + ' plays banjo';
+  } else {
+    return name + ' does not play banjo';
+  }
+  return name;
+}
+console.log(areYouPlayingBanjo('Adsm'));
+//
+return name + (name[0].toLowerCase() == 'r' ? ' plays' : ' does not play') + " banjo";
+//Зразок тесту
+const chai = require("chai");
+const assert = chai.assert;
+chai.config.truncateThreshold=0;
+
+describe("Basic tests", () => {
+  it("Testing for fixed tests", () => {
+    assert.strictEqual(areYouPlayingBanjo("Adam"), "Adam does not play banjo");
+    assert.strictEqual(areYouPlayingBanjo("Paul"), "Paul does not play banjo");
+    assert.strictEqual(areYouPlayingBanjo("Ringo"), "Ringo plays banjo");
+    assert.strictEqual(areYouPlayingBanjo("bravo"), "bravo does not play banjo");
+    assert.strictEqual(areYouPlayingBanjo("rolf"), "rolf plays banjo");
+    })
+  })
+
+
+
+// Задача 20
+/* Створіть функцію, яка повертає суму двох найменших додатних чисел із заданим масивом із мінімум 4 додатних чисел. Числа з плаваючою точкою чи недодатні цілі числа не передадуться.[19, 5, 42, 2, 77], вихід має бути 7 */
+let numbers = [19, 5, 42, 2, 77];
+function sumTwoSmallestNumbers(numbers) {  
+  //Code here
+  numbers = numbers.sort((a, b) => a-b);
+  return  numbers[0] + numbers[1]; 
+}
+console.log(sumTwoSmallestNumbers(numbers)); //7
+//
+let[a ,b] = numbers.sort((a, b) => a -b);
+  return a+b;
+//
+numbers.sort((a, b) => a- b);
+return numbers[0] + numbers[1];
+// Зразок тесту
+const chai = require("chai");
+const assert = chai.assert;
+
+describe("Your function", function() {
+  it("should work for basic tests", function() {
+    assert.strictEqual(sumTwoSmallestNumbers([5, 8, 12, 19, 22]), 13 , "Sum should be 13");
+    assert.strictEqual(sumTwoSmallestNumbers([15, 28, 4, 2, 43]), 6 , "Sum should be 6");
+    assert.strictEqual(sumTwoSmallestNumbers([3, 87, 45, 12, 7]), 10 , "Sum should be 10");
+    assert.strictEqual(sumTwoSmallestNumbers([23, 71, 33, 82, 1]), 24 , "Sum should be 24");
+    assert.strictEqual(sumTwoSmallestNumbers([52, 76, 14, 12, 4]), 16 , "Sum should be 16");
+  });
+});  
+
+
+// Задача 21
+/* Дано масив цілих чисел.
+Повертає масив, де перший елемент — це кількість додатних чисел, а другий — сума від’ємних чисел. 0 не є ні позитивним, ні негативним.
+Якщо введення є порожнім масивом або має значення null, повертає порожній масив.
+приклад
+Для введення [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15]вам слід повернутися [10, -65]. */
+let input = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15];
+function countPositivesSumNegatives(input) {
+  if (input === null || input.length === 0) {
+    return [];
+  }
+
+  let positiviCount = 0;
+  let negativeSum = 0;
+
+  for (let i = 0; i < input.length; i++) {
+    if(input[i] > 0) {
+      positiviCount++;
+    } else if (input[i] < 0) {
+      negativeSum += input[i];
+    } 
+  }
+  return [positiviCount, negativeSum];
+}
+console.log(countPositivesSumNegatives(input)); //) [10, -65]
+//
+function countPositivesSumNegatives(arr) {
+  return input && input.length ? [input.filter(p => p > 0).length, input.filter(n => n < 0).reduce((a, b) => a + b,  0)] : [];
+}
+const result = countPositivesSumNegatives();
+console.log(result); //[10, -65]
+
+// Зразок тесту
+const chai = require("chai");
+const assert = chai.assert;
+chai.config.truncateThreshold=0;
+
+describe("Example tests", () => {
+  it("Testing for fixed test 1", () => {
+    let testData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15];
+    let actual = countPositivesSumNegatives(testData);
+    let expected = [10, -65];
+    assert.deepEqual(actual, expected);
+  })
+    
+  it("Testing for fixed test 2", () => {
+    let testData = [0, 2, 3, 0, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14];
+    let actual = countPositivesSumNegatives(testData);
+    let expected = [8, -50];    
+    assert.deepEqual(actual, expected);
+  });
+});
+
+
+
+// Задача 22
+/* Дано набір чисел, повернути адитивну оберненість кожного. Кожен позитив стає негативом, а негативи стають позитивом.
+invert([1,2,3,4,5]) == [-1,-2,-3,-4,-5]
+invert([1,-2,3,-4,5]) == [-1,2,-3,4,-5]
+invert([]) == []
+Можна вважати, що всі значення є цілими. Не змінюйте вхідний масив/список. */
+const array = [1,2,3,4,5];
+function invert(array) {
+  for (let i = 0; i < array.length; i++) {
+    if(array[i] != 0){
+      array[i] = array[i] * -1;
+    }
+  }
+  return array;
+}
+console.log(invert(array)); // [-1, -2, -3, -4, -5]
+//
+const invert = array => array.map(num => -num) ;
+//
+return array.map(i => 0 - i);
+// Зразок тесту
+const Test = require('@codewars/test-compat');
+
+const chai = require("chai");
+const assert = chai.assert;
+chai.config.truncateThreshold=0;
+
+describe("Invert array values",() => {
+  const norm = arr => arr.map(n => n === -0 ? 0 : n);
+  it("Basic Tests", () => {
+    assert.deepEqual(norm(invert([1,2,3,4,5])), [-1,-2,-3,-4,-5]);
+    assert.deepEqual(norm(invert([1,-2,3,-4,5])), [-1,2,-3,4,-5]);
+    assert.deepEqual(norm(invert([])), []);
+    assert.deepEqual(norm(invert([0])), [0]);
+  });
+});
+
+
+// Задача 23
+/* завдання
+Підсумуйте всі числа даного масиву ( cq. list ), крім найвищого та найнижчого елементів (за значенням, а не за індексом!).
+Найвищий або найнижчий елемент, відповідно, є одним елементом на кожному краю, навіть якщо їх більше одного з однаковим значенням.
+Зверніть увагу на перевірку введених даних.
+приклад{ 6, 2, 1, 8, 10 } => 16 , { 1, 1, 11, 2, 3 } => 6
+Перевірка введених даних
+Якщо замість масиву вказано порожнє значення ( null, None, тощо), або даний масив є порожнім списком або списком лише з елементом, повертає .Nothing10 */
+let array = [6, 2, 1, 8, 10];
+function sumArray(array) {
+if(!array || array.length < 3) {
+  return 0;
+}
+  let arraySort = array.sort((a, b) => a - b);
+  
+  let sum = 0;
+  for(let i = 1; i < arraySort.length -1; i++){
+    sum += arraySort[i];
+  }
+  return sum;
+}
+console.log(sumArray(array)); //16
+//
+const sumArray = a => a ? a.sort((x, y) => x- y).slice(1, -1).reduce((s, e) => s + e, 0) : 0;
+//
+function sumArray(array) {
+  return Array.isArray(array) && array.length > 1
+    ? array.reduce((s, n) => s + n, 0) - Math.min(...array) - Math.max(...array)
+    : 0
+}
+// Зразок тесту
+const {assert} = require("chai");
+
+it("example tests", ()=>{
+  assert.strictEqual( sumArray(null)                     , 0 );
+  assert.strictEqual( sumArray([ ])                      , 0 );
+  assert.strictEqual( sumArray([ 3 ])                    , 0 );
+  assert.strictEqual( sumArray([ 3, 5 ])                 , 0 );
+  assert.strictEqual( sumArray([ 6, 2, 1, 8, 10 ])       , 16 );
+  assert.strictEqual( sumArray([ 0, 1, 6, 10, 10 ])      , 17 );
+  assert.strictEqual( sumArray([ -6, -20, -1, -10, -12 ]), -28 );
+  assert.strictEqual( sumArray([ -6, 20, -1, 10, -12 ])  , 3 );
+});
+
+
+// Задача 24
+/* Маючи рядок цифр, ви повинні замінити будь-яку цифру нижче 5 на «0», а будь-яку цифру 5 і вище на «1». Повернути отриманий рядок.
+Примітка: введення ніколи не буде порожнім рядком */
+let x = ['45385593107843568'];
+function fakeBin(x){
+  return x[0].split('').map(function(num) {
+    return  (parseInt(num) < 5 )? '0' : '1';
+    }).join('');
+}
+console.log(fakeBin(x)); //01011110001100111
+//
+return x.split('').map(n => n < 5 ? 0 : 1).join('');
+// Зразок тесту
+
+
+// Задача 25
+// Зразок тесту
+
+
+// Задача 26
+// Зразок тесту
+
+
+// Задача 27
+// Зразок тесту
+
+
+// Задача 28
+// Зразок тесту
+
+
+// Задача 29
+// Зразок тесту
+
+
+// Задача 30
+// Зразок тесту

@@ -5,6 +5,27 @@ ul>li*4
 ul>li*4>span
 ul>li*4>span{text}
 
+Сусідні елементи які знаходяться один біля одного позначаються +
+header+main+sidebar+footer
+ і отримуємо кожен тег один за одним
+header+main+aside+footer
+            <header></header>
+            <main></main>
+            <aside></aside>
+            <footer></footer>
+
+Групування
+header+(div>main+aside)+footer
+              <header></header>
+              <div>
+                  <main></main>
+                  <aside></aside>
+              </div>
+              <footer></footer>
+
+
+
+
 Атрибути змінюють зовнішній вигляд елемента і дають йому новий ф-ціонал
 
 Атрибут target вказує де має відкриватись силка - в новому чи поточному вікні(_blank).

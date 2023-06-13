@@ -11,32 +11,37 @@
     <div class="screen">
       <h1>Aim Training</h1>
       <!-- За допомогою класів дадається стилістика, за допомогою id додаються дані які дозволяють забирати елементи в JS-->
-      <a href="#" class="start" id="start">Начать игру</a>
+      <a href="#" class="start" id="start">Почати гру</a>
     </div>
 <!-- Список із 3 кнопок -->
     <div class="screen">
-      <h1>Выберите время</h1>
-      <ul class="time-list">
+      <h1>Виберіть час</h1>
+      <ul class="time-list" id="time-list">
         <li>
-          <button class="time-btn">
+          <button class="time-btn" data-time="10">
             10 сек
           </button>
         </li>
         <li>
-          <button class="time-btn">
+          <button class="time-btn" data-time="20">
             20 сек
           </button>
         </li>
         <li>
-          <button class="time-btn">
+          <button class="time-btn" data-time="30">
             30 сек
+          </button>
+        </li>
+        <li>
+          <button class="time-btn" data-time="40">
+            40 сек
           </button>
         </li>
       </ul>
     </div>
 <!-- Час + поле -->
     <div class="screen">
-      <h3>Осталось <span id="time">00:00</span></h3>
+      <h3>Залишилось <span id="time">00:00</span></h3>
       <div class="board" id="board"></div>
     </div>
     <script src="app.js"></script>
