@@ -1655,6 +1655,140 @@ ul li:last-child {
 */
 
 
+/* !Таблиці 
+*border-collapse - Вказує, чи повинні бути згорнуті межі таблиці
+*border-spacing	- Задає відстань між межами сусідніх чарунок
+*nth-child()
+*overflow-x:auto; - Адаптативна (чутлива) таблиця
+*overflow:scroll
+*caption-side: bottom; - Задає розміщення заголовка таблиці
+*empty-cells	- Вказує, чи слід відображати межі та фон в пустих чарунках таблиці
+*table-layout - Встановлює алгоритм компонування (макет), що буде використовуватися для таблиці 
+Як виглядає таблиця HTML
+<table>
+  <tr>
+    <th>Имя</th>
+    <th>Фамилия</th>
+    <th>Зарплата</th>
+  </tr>
+  <tr>
+    <td>Peter</td>
+    <td>Griffin</td>
+    <td>$100</td>
+  </tr>
+</table>
+
+
+*Межі 
+Щоб їхвстановити потрібно використати властивість border
+Щоб таблиця заповнила весь екран, потрібно додати width: 100%;
+      *border-collapse - визначає чи повинні межі таблиці згорнутись в одну межу
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+Елемент <th> та <td> мають окрему межу. ТОму якщо додати щє властивість border, вийде подвійна межа
+Межа лише навколо таблиці
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+Вертикальне вирівнювання тексту по низу
+td {
+ height: 50px;
+ vertical-align: bottom;
+}
+*Відступи - padding
+<style>
+table, td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  padding: 15px;
+}
+</style>
+
+
+*Горизонтальні роздільники
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+</style>
+*Виділеня рдяків таблиці при наведені
+Використовується слектор :hover на <tr> щоб виділити рядки таблиці при наведені курсором
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+tr:hover {background-color:#f5f5f5;}
+</style>
+
+*селектор nth-child() використовують для таблиць із зебрами
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+
+
+*overflow-x:auto; - Адаптативна (чутлива) таблиця
+В ній відображається горизонтальна смуга прокрутки, якщо
+екран замалий для відображення всього вмісту
+ЩОб створити адаптативну таблицю, потріно додати елемент
+контейнера (наприклад  <div>)  за допомогою 
+<strong>overflow-x: auto</strong> навколо елемента таблиці
+<div style="overflow-x:auto;">
+  <table>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Points</th>
+    </tr>
+    <tr>
+      <td>Jill</td>
+      <td>Smith</td>
+      <td>50</td>
+    </tr>
+  </table>
+</div>
+
+*overflow:scroll
+
+
+
+
+
+
+
+
+*/
+
+
 
 
 
