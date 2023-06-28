@@ -48,6 +48,113 @@
 *padding-right - справа
 *padding-bottom - знизу
 *padding-left - зліва
+
+Висота і ширина:
+*height - Встановлює висоту елемента
+*max-height	Встановлює максимальну висоту елемента
+*min-height	Встановлює мінімальну висоту елемента
+*width	Встановлює ширину елемента
+*max-width	Встановлює максимальну ширину елемента
+*min-width	Встановлює мінімальну ширину елемента
+
+*CSS Блочна модель
+
+Контур outline
+Має такі властисвосіт: 
+*outline-style - Визначає стиль контуру
+      dotted,dashed,solid,double,ridge,inset,outset,none,hidden
+*outline-color - Визначає колір контуру
+      invert
+*outline-width - Визначає ширину контуру
+      thin,medium,thick
+*outline-offset - Задає відстань між контуром і краєм або межею елемента.
+*outline - 	Скорочена властивість для встановлення ширини контуру, стиля контуру і кольору контуру в одній об’яві.
+
+Текст
+*Вирівнювання тексту
+      -text-align     -text-align-last      -vertical-align
+      -direction      -unicode-bidi
+*Оформлення тексту - text-decoration
+      -text-decoration-line     -text-decoration-color
+      -text-decoration-style    -text-decoration
+      -text-decoration-thickness - Визначає товщину лінії text-decoration
+*Трансформація - text-transform
+      -uppercase - заголовний текст       -lowercase - рядковий текст
+      -capitalize - перша літера кожного слова заголовна
+*Інтервал 
+      -text-indent - Відступ тексту  -letter-spacing - Міжлітерна відстань
+      -line-height - Висота рядка     -word-spacin - Інтервал між словами
+      -white-space - Пробіл
+*Тінь
+      -text-shadow - додає тінь до тексту
+
+
+ШРИФТИ
+Є 5 загальних сімейств шрифтів
+*Serif - мають невелике обведення по краях кожної літери. Вони створюють відчуття формальності та елегантності.
+*Sans-serif - мають чисті лінії(без дрібних штрихів). Вони створюють сучасний і мінімалістичний вигляд.
+*Monospace - всі літери мають однакову фіксовану ширину. Вони створюють механічний вигляд.
+*Cursive - імітують людський почерк
+*Fantasy - декоративні/грільні шрифти
+Властивості: 
+*font-family - Визначає сімейство шрифтів для тексту
+*Веб-безпечні шрифти
+*font-style - Стиль шрифту
+      -normal - текст відображається нормально
+      -italic - текст відображається курсивом
+      -oblique - текст "нахилений"(нахилений шрифт дуже схожий на курсив, але підтримується меншою мірою)
+*Font-Weight - Товщина шрифту
+      -normal
+      -bold
+      -lighter
+*Font-Variant - Визначає, чи слід відображати текст дрібним шрифтом
+*Font Size - Розмір шрифту
+*font  - Встановлює всі властивості шрифту в одній об’яві
+
+Іконки: 
+*Font Awesome Іконки
+*Bootstrap іконки
+*Google Іконки
+
+Посилання
+Властивості:
+*a:link - звичайне, невідвідуване  посилання
+*a:visited - посилання яке відвідавв користвувач
+*a:hover - посилання, коли куристувач наводить на нього курсор миші
+*a:active - посилання в той момент, коли воно натиснуте(активне)
+
+
+Списки
+Властивості: 
+ *list-style-type - виззначає тип маркера елемента списку 
+      -Невпорядкований список: circle, square
+      -Впорядкований список:  upper-roman, lower-alpha
+      -За замовчуванням: none
+*list-style-image - визначає зображення як маркер елемента списку
+*list-style-position - визначає положення маркерів елемента списку(марковані пункти)
+      *outside - означає що маркери будуть поза елементами списку
+      *inside - означає що маркери будуть всередині елемента списку.
+*list-style - скорочена властивість
+
+
+Таблиці
+*border-collapse - Вказує, чи повинні бути згорнуті межі таблиці
+*border-spacing	- Задає відстань між межами сусідніх чарунок
+*nth-child()
+*overflow-x:auto; - Адаптативна (чутлива) таблиця
+*overflow:scroll
+*caption-side: bottom; - Задає розміщення заголовка таблиці
+*empty-cells	- Вказує, чи слід відображати межі та фон в пустих чарунках таблиці
+*table-layout - Встановлює алгоритм компонування (макет), що буде використовуватися для таблиці 
+
+
+
+
+
+
+
+
+
 */
 
 
@@ -590,4 +697,1119 @@ div {
 
 
 ___________________________________________________________________________
-/* ! height та width - висота і ширина */
+/* ! height та width - висота і ширина 
+Вони встановлюють висоту/ширину області всередині відступу, межі і поля елемента. Не включають padding, border, margin.
+Можуть мати наступні значення: 
+*auto - за замовчуванням. Браузер розраховує висоту і ширину автоматично
+*length - визначає висоту/ширину в  px, cm і т.д
+*% - визначає висоту/ширину в відсотках від блоку, що містить
+*initial - визначає висоту/ширину в значення за замовчуванням
+*inherit - висота/ширина будуть успадковані від батьківського значення
+Приклади: 
+div {
+  height: 200px;
+  width: 50%;
+  background-color: powderblue;
+}
+div {
+  height: 100px;
+  width: 500px;
+  background-color: powderblue;
+}
+      *max-width - встановлює максимальну ширину елемента. 
+      Вказується в значеннях довжини: px, cm і т.д. або в процентах (%), або встановити значення none(означає що максимальна ширина відсутня)
+      *min-width - Встановлює мінімальну ширину елемента
+      *max-height - Встановлює максимальну висоту елемента
+      *min-height - Встановлює мінімальну висоту елемента
+*/
+
+
+
+
+
+
+
+
+___________________________________________________________________________
+/*! CSS Блочна модель
+Всі моделі HTML можна розглядати як блоки. В CSS 'блочна модель' використовується коли говорять про дизайн і верстку
+Модель CSS блоку - це блок який охоплює кожен HTML елемент. Він складається із полів(margin), меж(border), відступів(padding) та контенту. Дана модель дозволяє додавати межі навколо елементів і визначати відстань між  елементами
+Приклад блочної моделі: 
+div {
+  width: 300px;
+  border: 15px solid green;
+  padding: 50px;
+  margin: 20px;
+}
+
+Щоб розрахувати весь розмір елементу, потрібно також додати відступ(padding), межі (border) та поля (margin). Встановлення просто ширини(width) і висоти (height) замало. Так як просто встановлюється ширина/висота області змісту
+Приклад: тут <div> буде мати загальну ширину 350px
+div {
+  width: 320px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+}
+Розрахунок::after
+320px (width)
++20px(лівий + правий padding)
++10px(лівий + правий border)
+=350px
+*Загальна ширина елемента має бути розріхована таким чином:  
+Загальна ширина елемента=width+лівий padding+правий padding+лівий border+правий border+лівий margin+правий margin
+
+*Загальна висота елемента має бути розріхована таким чином:
+Загальна висота елемента=height+верхній padding+нижній padding+верхній border+нижній border+верхній margin+нижній margin
+*/
+
+
+
+
+
+
+
+
+
+___________________________________________________________________________
+/* ! Outline -  контур
+Контур - це смуга, яка проводиться навколо елементів поза межами, щоб зробити елемент виокремленим
+Має такі властисвосіт: 
+*outline-style - Визначає стиль контуру
+      dotted,dashed,solid,double,ridge,inset,outset,none,hidden
+*outline-color - Визначає колір контуру
+      invert
+*outline-width - Визначає ширину контуру
+      thin,medium,thick
+*outline-offset - Задає відстань між контуром і краєм або межею елемента.
+*outline - 	Скорочена властивість для встановлення ширини контуру, стиля контуру і кольору контуру в одній об’яві.
+Контур відрізняється від меж(border). Контур малюється поза межою елемента і може перекривати інший вміст. Контур не є частиною розмірів елементу. Зашальна висота і ширина елемента не залежить від ширини контуру
+*/
+
+/* *    Outline-style - стиль контуру
+Значення: 
+*dotted - визначає цятковий контур
+*dashed - визначає пунктирний контур
+*solid - визначає суцільний контур
+*double - визначає подвійний контур
+*groove - визначає 3D рифлений контур
+*ridge - визначає 3D ребристий контур
+*inset - визначає 3D внутрішній контур
+*outset -  визначає 3D зовнішній контур
+*none - визначає відсутність контур
+*hidden - визначає прихований контур
+!Жодна із властивостей контуру не буде мати ефект якщо не встановлена властивість utline-style
+*/
+
+/* *    Оutline-width  - ширина контуру
+Значення: 
+*thin - тонкий(зазвичай 1px)
+*medium - середній(зазвичай 3px)
+*thick - товстий (зазвичай 5px)
+*Визначений розмір(в px, pt, cm, em і т.д.)
+Приклади: 
+      p.ex1 {
+        border: 1px solid black;
+        outline-style: solid;
+        outline-color: red;
+        outline-width: thin;
+      }
+                  p.ex4 {
+                    border: 1px solid black;
+                    outline-style: solid;
+                    outline-color: red;
+                    outline-width: 4px;
+                  }
+*/
+
+/* *    Оutline-color - колір контуру
+КОлір може бути встановлений за допомогою: 
+*name - вкажіть назву кольору, наприклад "red"
+*HEX - вкажіть шістнадцяткове значення, наприклад "#ff0000"
+*RGB - вкажіть значення RGB, наприклад "rgb(255,0,0)"
+*HSL - вкажіть значення HSL, наприклад 'hsl(0, 100%, 50%)'
+*invert - виконує інверсію кольору (що забезпечує видимість контуру незалежно від кольорового фону                      
+
+Приклади: 
+      p.ex1 {
+        border: 2px solid black;
+        outline-style: solid;
+        outline-color: red;
+      }     Суцільний червоний контур.
+      p.ex2 {
+        border: 2px solid black;
+        outline-style: dotted;
+        outline-color: blue;
+      }     Цятковий синій контур.
+      p.ex3 {
+        border: 2px solid black;
+        outline-style: outset;
+        outline-color: grey;
+      }     Зовнішній сірий контур.
+
+      *invert - вкионує інверсію кольору. Це гарантує що колір буде видно незалежно від кольору фону
+            p.ex1 {
+              border: 1px solid yellow;
+              outline-style: solid;
+              outline-color: invert;
+            }     Суцільний інвертований контур.
+*/
+
+/* *    Оutline - скорочена властивість для встановлення наступних індивідуальних властивостей контуру 
+  -outline-width
+  -outline-style (обов’язково)
+  -outline-color
+Властивість  outline вказуєтьяс як 1 так і 2,3 значення зі списку.
+! Порядок значень не має значення. 
+p.ex1 {outline: dashed;}      Пунктирний контур.
+p.ex2 {outline: dotted red;}      Цятковий червоний контур.
+p.ex3 {outline: 5px solid yellow;}      Суцільний 5px жовтий контур.
+p.ex4 {outline: thick ridge pink;}      Товстий ребристий рожевий контур*/
+
+/* *   Outline Offset - додає простір між контуром і краєм/межею елемента.
+Простір між елементами та його контуром прозорий
+Приклад: 
+p {
+  margin: 30px;
+  border: 1px solid black;
+  outline: 1px solid red;
+  outline-offset: 15px;
+}   Поки не побачиш важко зрозуміти. Мкажу що виглядає наче текст в подвійній рамці     */
+
+
+
+
+
+
+
+
+
+
+___________________________________________________________________________
+/* ! Текст - форматування тексту
+*Вирівнювання тексту
+      -text-align     -text-align-last
+      -direction      -unicode-bidi
+      -vertical-align
+*Оформлення тексту - text-decoration
+      -text-decoration-line     -text-decoration-color
+      -text-decoration-style    -text-decoration
+      -text-decoration-thickness - Визначає товщину лінії text-decoration
+      
+*Трансформація - text-transform
+      -uppercase - заголовний текст
+      -lowercase - рядковий текст
+      -capitalize - перша літера кожного слова заголовна
+*Інтервал 
+      -text-indent - Відступ тексту
+      -letter-spacing - Міжлітерна відстань
+      -line-height - Висота рядка
+      -word-spacin - Інтервал між словами
+      -white-space - Пробіл
+*Тінь
+      -text-shadow - додає тінь до тексту
+  */
+
+
+
+
+/** ВИРІВНЮВАННЯ ТЕКСТУ
+    *text-align - визначає горизонтальне вирівнювання тексту
+          center,left,right,justify
+    *text-align-last - визначає спосіб вирівнювання останього рядка тексту
+          center,left,right,justify
+    Зміна напрямку текстуу
+    *direction - визначає напрямок тексту/напрямок написання
+    *unicode-bidi - використовується разом із direction, щоб установити або повернути, чи має бути перевизначений текст для підтримки кількох мов в одному документі
+    Вертикальне вирівнювання
+    *vertical-align - встановлює вертикальне вирівнювання тексту
+
+    *text-align - використовується для встановлення горизонтального вирівнювання тексту
+      Властивосіт:
+      *center
+      *left
+      *right
+      *justify
+
+    Текст можна вирівняти за лівим або правим краєм, по центру або за шириною
+    Вирівнювання по центру
+    h1 {
+      text-align: center;
+    }
+    Вирівнюванян за лівим краєм, якщо напрямок тексту зліва направо
+    h2 {
+      text-align: left;
+    }
+    Вирівнювання за правим краєм, якщо напрямок тексту справа на ліво
+    h3 {
+      text-align: right;
+    }
+    Рядок розтягується таким чином, щоб мати однакову ширину. Я так зрозуміла , що цей метод робить квадрат
+      text-align: justify;
+    }
+*/
+
+/* *    text-align-last  - визначає спосіб вирівнювання останього рядка тексту
+Властивості: 
+*right
+*center
+*justify
+Приклад: Вирівнює останній рядок в <p> елементах
+По праву сторону
+p.a {
+  text-align-last: right;
+}
+По центру
+p.b {
+  text-align-last: center;
+}
+Текст розтягується по всі ширині рядка
+p.c {
+  text-align-last: justify;
+}
+*/
+
+/* *   direction і unicode-bidi - використовується для змін напрямку тексту елемента
+Это направление текста справа налево.
+p.ex1 {
+  direction: rtl; 
+  unicode-bidi: bidi-override;
+}*/
+
+/* *    vertical-align - вертикальне вирівнювання елемента
+Властивості: 
+*baseline
+*text-top
+*text-bottom
+*sub
+*super
+img.a {
+  vertical-align: baseline;
+}
+img.b {
+  vertical-align: text-top;
+}
+img.c {
+  vertical-align: text-bottom;
+}
+img.d {
+  vertical-align: sub;
+}
+img.e {
+  vertical-align: super;
+}       */
+
+
+
+
+
+/* *  text-decoration - ОФОРМЛЕННЯ ТЕКСТУ 
+Властивості: 
+*text-decoration-line
+*text-decoration-color
+*text-decoration-style
+*text-decoration-thickness
+*text-decoration
+
+
+*text-decoration-line - додати декоративну лінію до тексту
+Властивості: 
+      *overline
+      *line-through
+      *underline
+Можна комбінуати значення, як от overline underline
+Не варто підкреслювати текст який не є посиланням, щоб не заплутати користувача    
+
+*text-decoration-color - використовується для встановлення кольору декоративної лінії
+h1 {
+  text-decoration-line: overline;
+  text-decoration-color: red;
+}
+
+*text-decoration-style - використовується для встановлення стилю декоративної лінії
+Властивості: 
+      *solid
+      *double
+      *dashed
+      *wavy
+p.ex3 {
+  text-decoration-line: underline;
+  text-decoration-color: red;
+  text-decoration-style: wavy;
+}
+
+*text-decoration-thickness - встановлює товщину декоративої лінії
+p {
+  text-decoration-line: underline;
+  text-decoration-color: red;
+  text-decoration-style: double;
+  text-decoration-thickness: 5px;
+}
+h2 {
+  text-decoration-line: underline;
+  text-decoration-thickness: 5px;
+}
+h3 {
+  text-decoration-line: underline;
+  text-decoration-thickness: 25%;
+}
+
+*text-decoration - скорочена властивість
+-text-decoration-line (вимагається)
+-text-decoration-color (не вимагається)
+-text-decoration-style (не вимагається)
+-text-decoration-thickness (не вимагається)
+Приклад: 
+p {
+  text-decoration: underline red double 5px;
+}
+
+!За замовчуванням усі посилання HTML підкреслені. Властивість  text-decoration: none; використовується для видалення підкреслення з посилань
+a {
+  text-decoration: none;
+}     */
+
+
+
+
+
+/* * ТРАНСФОРМАЦІЯ ТЕКСТУ - використовується для визначення заголовних та рядкових літер в тексті
+Це можна використати щоб перетворити всі літери в заголовні чи рядкові, або зробити першу літеру кожного слова заголовною
+Властивості: 
+      *uppercase - заголовний текст
+      *lowercase - рядковий текст
+      *capitalize - перша літера кожного слова заголовна
+p.uppercase {
+  text-transform: uppercase;
+}
+p.lowercase {
+  text-transform: lowercase;
+}
+p.capitalize {
+  text-transform: capitalize;
+}     */
+
+
+
+/* * ІНТЕРВАЛ
+вВластивості: 
+      *text-indent - Відступ тексту
+      *letter-spacing - Міжлітерна відстань
+      *line-height - Висота рядка
+      *word-spacin - Інтервал між словами
+      *white-space - Пробіл
+
+
+*text-indent - використовується для визначення відступу першого рядка тексту 
+p {
+  text-indent: 50px;
+}
+
+
+*letter-spacing - використовується для визначення пробілу між символами в тексті
+Збільшена відстань на 3px
+h1 {
+  letter-spacing: 3px;
+}
+Зменшена відстань, буква налазить на букву
+h2 {
+  letter-spacing: -3px;
+}
+
+
+*line-height - визначає відстань між рядками
+p.small {
+  line-height: 0.8;
+}     Параграф з меншою висотою рядка 
+p.big {
+  line-height: 1.8;
+}     Параграф з більшою висотою рядка
+
+
+*word-spacin - визначає пробіл між словами в тексті
+h1 {
+  word-spacing: 10px;
+}
+h2 {
+  word-spacing: -5px;
+}
+
+
+*white-space - визначає, як обробляються пробіли всередині елемента
+Приклад: показано як відключити перенесення тексту всередині елемента
+p {
+  white-space: nowrap;
+}*/
+
+
+/* * text-shadow - ТІНЬ ТЕКСТУ
+Властивіть: 
+      *text-shadow - додає тінь до тексту
+Вказується лише горизонтальна тінь(2px) та вертикальна(2px) можна додати  ефект розмиття(5px), колір
+h1 {
+  text-shadow: 2px 2px 5px red;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+_________________________________________________________________________
+/* ! ШРИФТИ
+Є 5 загальних сімейств шрифтів
+  *Serif - мають невелике обведення по краях кожної літери. Вони створюють відчуття формальності та елегантності.
+  *Sans-serif - мають чисті лінії(без дрібних штрихів). Вони створюють сучасний і мінімалістичний вигляд.
+  *Monospace - всі літери мають однакову фіксовану ширину. Вони створюють механічний вигляд.
+  *Cursive - імітують людський почерк
+  *Fantasy - декоративні/грільні шрифти
+
+
+
+Властивості: 
+*font-family - Визначає сімейство шрифтів для тексту
+*Веб-безпечні шрифти
+*font-style - Стиль шрифту
+      -normal - текст відображається нормально
+      -talic - текст відображається курсивом
+      -oblique - текст "нахилений"(нахилений шрифт дуже схожий на курсив, але підтримується меншою мірою)
+*Font-Weight - Товщина шрифту
+      -normal
+      -bold
+      -lighter
+*Font-Variant - Визначає, чи слід відображати текст дрібним шрифтом
+*Font Size - Розмір шрифту
+*font  - Встановлює всі властивості шрифту в одній об’яві
+
+
+*font-family - властивість яка використовується щоб вказати шрифт тексту
+Бажано щоб вона мала кілька назв шрифтів в якості запасного варіанту, щоб забезпечити максимальну сумісність між браузерами/ОС
+Якщо в назві шрифту більше одного слова, вона має бути взята в лапки
+.p1 {
+  font-family: "Times New Roman", Times, sans-serif;
+}     */
+
+/* *    Веб-безпечні шрифти - це шрифти, які універсально ввстановлюються в усіх браузерах і на всіх пристроях
+Але завжди є шанс що шрифт не знайдено або встановлений не правильно. В таких випадках потрібно використовувати резервні шрифти. Це означає ,що у властивість font-family потрібно додати список схожих шрифтів. Якщо перший шрифт не працює, браузер використає наступний. Список шрифтів завжди потрібно закінчувати назвою сімейства шрифтів
+p {
+  font-family: Tahoma, Verdana, sans-serif;
+}
+
+Кращі веб-безпечні шрифти для HTML та CSS:
+-Arial (sans-serif)
+-Verdana (sans-serif)
+-Helvetica (sans-serif)
+-Tahoma (sans-serif)
+-Trebuchet MS (sans-serif)
+-Times New Roman (serif)
+-Georgia (serif)
+-Garamond (serif)
+-Courier New (monospace)
+-Brush Script MT (cursive)
+-Copperplate, Papyrus (fantasy)
+
+Шрифтом за замовчуванням в Google є - Arial (sans-serif). Він один із найбільш веб-безпечних шрифтів, доступний в усіх основних ОС    */
+
+/* *font-style - Стиль шрифту. Восновном використовуєтья для визначення курсивного теусту
+Значення: 
+      *normal - текст відображається нормально
+      *italic - текст відображається курсивом
+      *oblique - текст "нахилений"(нахилений шрифт дуже схожий на курсив, але підтримується меншою мірою)
+p.normal {
+  font-style: normal;
+}     Параграф в звичайному стилі
+p.italic {
+  font-style: italic;
+}     Параграф курсивом
+p.oblique {
+  font-style: oblique;
+}   Параграф нахиленим стилем     
+
+ *  Font-Weight - визначає товзщину шрифту
+Властивості: 
+      *normal
+      *bold
+      *lighter
+p.normal {
+  font-weight: normal;
+}
+p.thick {
+  font-weight: bold;
+}
+p.light {
+  font-weight: lighter;
+}
+p.thicker {
+  font-weight: 900;
+}     
+
+ *  Font-Variant -  визначає чи має текст відображатись дріббним шрифтом
+В шрифті з маленькими заголовними літерами всі рядкові літери перетворюються в великі літери. Однак перетворені великі літери відображаються меньшим розміром шрифту,
+ніж початкові великі літери в тексті.
+p.normal {
+  font-variant: normal;
+}
+p.small {
+  font-variant: small-caps;
+}   */
+
+/* *Font Size - Розмір шрифту
+Значення може бути абсолютним або відносним
+  Абсолютний розмір:
+    - Встановлює текст вказаного розміру
+    - Не дозволяє користувачу змінювати розмір тексту в усіх браузерах (погано через доступність)
+    - Абсолютний розмір має користь,мколи відомий фізичний розмір виведення
+  Відносний розмір: 
+    - Встановлює розмір відносно оточуючих елементів
+    - Дозволяє користувачу змінювати розмір тексту в браузерах
+Якщо не встановити розмір шрифту, то він за замовчуванням доя нормального тексту, наприклад параграфу, буде 16px (16px=1em) - загальноприйнятий стандарт для вебсайтів.
+h1 {
+  font-size: 40px;
+}
+При використанні пікселів, всеодно можна використовувати інструменти маштабування, щоб змінити розмір всієї сторінки
+
+*Em - Встановлення розміру шрифту за допомогою Em використовується для того щоб користувачі могли змінювати розмір тексту( в меню браузера)
+1em = поточному розміру шрифта. Розмір тексту за замовчуванням 16 пікселів
+1em = 16px
+Розмір можна розраховувати від пікселів до em за формулою: pixels/16=em
+p {
+  font-size: 0.875em; -> 14px/16=0.875em 
+За допомогою em можна налаштовувати розмір тексту в усіх браузерах
+}
+
+Рішення,
+яке працює в усіх браузерах,
+- встановити розмір шрифту за замовчуванням в процентах для елемента <body>:
+
+*vw "viewport width" (ширина області перегляду) також розмыр шрифту можна встановити за допомогою цієї одиниці
+<h1 style='font-size:10vw'>Hello World</h1>
+Область перегляду (viewport) - це розмір вікна браузера. 1vw=1% ширини області перегляду. Якщо ширина області перегляду 50 см,
+1vw складає 0,
+5 см.
+
+*Google шрифти - можна вкиористовувати коли потрібно використати щє якісь шрифти окрім стандартних HTML
+Щоб його використати просто потрібно додати посилання в таблицю стилів в розділі  <head>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+<style>
+body {
+  font-family: "Sofia", sans-serif;
+}
+</style>
+</head>
+Щоб використати декілька Google-шрифтів достатньо розділити назви '|'
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
+Але запит на декілька шрифтів може сповільнити роботу веб-сторінки
+
+Шрифти можна стилізувати 
+body {
+  font-family: "Sofia", sans-serif;
+  font-size: 30px;
+  text-shadow: 2px 2px 2px #ababab;
+}
+
+*Віскнення ефектів шрифтів
+Спочатку потрібно додати effect=effectname до Google AP, потім додати ім'я спеціального класу до елементу. Ім'я класу завжди поинається з font-effect- і закінчується з effectname.
+head><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire"><style>body {
+  font-family: "Sofia", sans-serif;
+  font-size: 30px;
+}
+</style></head><body><h1 class="font-effect-fire">Sofia у вогні</h1></body>
+Google-шрифти доступні тільки онлайн, щоб вони були доступні офлайн їх потрібно скачати і розмістити в папці
+
+*Правила комбінування шрифтів
+    1.Доповнення один одного
+Хороша комбінація шрифтів має гармонувати, не бути занадто схожою або занадто різною.
+    2. Використання суперсімейства шрифтів
+Суперсімейство шрифтів - це набір шрифтів, призначений для сумісної роботи. Таким чином, використання різних шрифтів в одному суперсімействі безпечно.
+    3.Контраст
+Два занадто схожих шрифта часто конфліктують. Тим не менше, контрасти, виконані правильно, розкривають все найкраще в кожному шрифті.
+    4.Обирати один головний шрифт
+Один шрифт має бути босом, тобто - головним. Це встановлює ієрархію шрифтів на вашій сторінці. Цього можна добитися, варіюючи розмір, жирність і колір.
+body {
+  background-color: black;
+  font-family: Verdana, sans-serif;
+  font-size: 16px;
+  color: gray;
+}
+
+h1 {
+  font-family: Georgia, serif;
+  font-size: 60px;
+  color: white;
+}
+
+Комбінації:
+-Georgia та Verdana
+-Helvetica та Garamond
+-Merriweather та Open Sans
+-Ubuntu та Lora
+-Abril Fatface та Poppins
+-Cinzel та Fauna One
+-Fjalla One та Libre Baskerville
+-Space Mono та Muli
+-Spectral та Rubik
+-Oswald та Noto Sans
+
+
+*font - Скорочена властивість шрифтів для:
+      -font-style
+      -font-variant
+      -font-weight
+      -font-size/line-height
+      -font-family
+Значення font-size та font-family обов'язкові
+p.a {
+  font: 20px Arial, sans-serif;
+}
+
+p.b {
+  font: italic small-caps bold 12px/30px Georgia, serif;
+}*/
+
+
+
+
+
+
+
+
+
+_________________________________________________________________________
+/* ! ІКОНКИ
+Щоб додати іконки на HTML-сторінку - використовувати бібліотеку іконок, наприклад, Font Awesome.
+Додати назву вказаного класу іконок в будь-який вбудований HTML-елемент (наприклад, <i> або <span>).
+Всі іконки в бібліотеках іконок нижче представляють собою масштабовані вектори, які можна налаштувати за допомогою CSS (розмір, колір, тінь і т.д.)
+
+*Font Awesome Іконки
+Щоб потрапити потрвібно перейти на fontawesome.com, увійдіть в систему та отримайте код для додавання в розділ <head> вашої HTML-сторінки:
+<script src="https://kit.fontawesome.com/ваш код.js"></script>
+
+*Bootstrap іконки
+Щоб використовувати гліфіконки Bootstrap, додайте наступний рядок в розділ <head> вашої HTML-сторінки:
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+*Google Іконки
+Щоб використовувати Google іконки, додайте наступний рядок всередині розділу <head> вашої HTML сторінки:
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">        */
+
+
+
+
+
+
+
+
+
+
+
+
+
+_________________________________________________________________________
+/* !  Посилання 
+Посилання можуть бути оформлені за допомогою будь-якої CSS-властивості (наприклад, color, font-family, background і т.д.).
+<head>
+<style>
+a {
+  color: hotpink;
+}
+</style>
+</head>
+<body>
+<h2>CSS Ссылки</h2>
+<p><b><a href="index.html" target="_blank">Это ссылка</a></b></p>
+</body>
+
+Посилання оформляються в залежності від того в якому вони стані знаходяться
+      *a:link - звичайне, невідвідуване  посилання
+      *a:visited - посилання яке відвідавв користвувач
+      *a:hover - посилання, коли куристувач наводить на нього курсор миші
+      *a:active - посилання в той момент, коли воно натиснуте(активне)
+
+Правила порядку: 
+*a:hover ПОВИНЕН слідувати після a:link та a:visited
+*a:active ПОВИНЕН слідувати після a:hover
+
+
+
+*Комбінація з text-decoration 
+a:link {
+  text-decoration: none;
+}     Посилання не підкреслене
+
+a:visited {
+  text-decoration: none;
+}     Посилання не підкреслене
+
+a:hover {
+  text-decoration: underline;
+}     Посилання підкеслюється в момент наведення мишою
+
+a:active {
+  text-decoration: underline;
+}     Посилання підкеслюється в момент натискання
+
+*Комбінація з background-color
+a:link {
+  background-color: yellow;
+}
+a:visited {
+  background-color: cyan;
+}
+a:hover {
+  background-color: lightgreen;
+}
+a:active {
+  background-color: hotpink;
+}
+
+*Посилання стилізоване в вигляді кнопки
+a:link, a:visited {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+a:hover, a:active {
+  background-color: red;
+}
+
+*Приклад стилів до гіперпосилань
+Силка змінює колір
+a.one:link {color: #ff0000;}
+a.one:visited {color: #0000ff;}
+a.one:hover {color: #ffcc00;}
+Силка змінює розмір шрифта
+a.two:link {color: #ff0000;}
+a.two:visited {color: #0000ff;}
+a.two:hover {font-size: 150%;}
+Змінює колір фону
+a.three:link {color: #ff0000;}
+a.three:visited {color: #0000ff;}
+a.three:hover {background: #66ff66;}
+Змінює сімейство шрифтів
+a.four:link {color: #ff0000;}
+a.four:visited {color: #0000ff;}
+a.four:hover {font-family: monospace;}
+Силка підкреслюється при наведені на неї курсора
+a.five:link {color: #ff0000; text-decoration: none;}
+a.five:visited {color: #0000ff; text-decoration: none;}
+a.five:hover {text-decoration: underline;}
+
+*Приклад створення поля/кнопки посилання
+a:link, a:visited {
+  background-color: white;
+  color: black;
+  border: 2px solid green;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: green;
+  color: white;
+}
+
+*Приклад різних типів курсорів
+<span style="cursor: auto">auto</span><br>
+<span style="cursor: crosshair">crosshair</span><br>
+<span style="cursor: default">default</span><br>
+<span style="cursor: e-resize">e-resize</span><br>
+<span style="cursor: help">help</span><br>
+<span style="cursor: move">move</span><br>
+<span style="cursor: n-resize">n-resize</span><br>
+<span style="cursor: ne-resize">ne-resize</span><br>
+<span style="cursor: nw-resize">nw-resize</span><br>
+<span style="cursor: pointer">pointer</span><br>
+<span style="cursor: progress">progress</span><br>
+<span style="cursor: s-resize">s-resize</span><br>
+<span style="cursor: se-resize">se-resize</span><br>
+<span style="cursor: sw-resize">sw-resize</span><br>
+<span style="cursor: text">text</span><br>
+<span style="cursor: w-resize">w-resize</span><br>
+<span style="cursor: wait">wait</span>        */
+
+
+
+
+
+
+
+
+
+
+__________________________________________________________________________
+/* ! Списки
+Властивості: 
+ *list-style-type - виззначає тип маркера елемента списку 
+      -Невпорядкований список: circle, square
+      -Впорядкований список:  upper-roman, lower-alpha
+      -За замовчуванням: none
+*list-style-image - визначає зображення як маркер елемента списку
+*list-style-position - визначає положення маркерів елемента списку(марковані пункти)
+      *outside - означає що маркери будуть поза елементами списку
+      *inside - означає що маркери будуть всередині елемента списку.
+*list-style - скорочена властивість
+      
+HTML-списки та  CSS-властивості
+В HTML є два основні типи списків:
+- невпорядковані списки -<ul>- помічені маркерами
+- впорядковані списки -<ol>- помічені цифрами або буквами
+Властивості CSS : 
+- встановлюють різні маркери елементів списку для
+ впорядкованих списків
+ -встановлюють різні маркери елементів списку для 
+ невпорядкованих списків
+ -встановлюють зображення як маркер елемента списку
+ -додають кольори фону в списки та елементи списки
+
+ *list-style-type - виззначає тип маркера елемента списку
+      Властивості: 
+      Невпорядкований список
+      * circle
+      * square
+      Впорядкований список
+      * upper-roman
+      * lower-alpha
+      Налаштування за замовчуванням
+      *none - видаляє мітки/маркери
+ul.a {
+  list-style-type: circle;
+}     круглі маркери
+ul.b {
+  list-style-type: square;
+}     маркери квадратиками
+ol.c {
+  list-style-type: upper-roman;
+}     маркери римськими цифрами
+ol.d {
+  list-style-type: lower-alpha;
+}     маркери буквами
+
+В списків також є поля за замовчуванням та відступи. Щоб 
+видалити їх потрібно додати margin:0 та padding:0 до <ul> або <ol>:
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+*list-style-image - визначає зображення як маркер елемента списку
+Приклад: 
+ul {
+  list-style-image: url('sqpurple.gif');
+}
+
+
+*list-style-position - визначає положення маркерів елемента списку(марковані пункти)
+      *outside - означає що маркери будуть поза елементами списку
+      Початок рядка кожного елемента списку буде вирівняно по вертикалі
+      *inside - означає що маркери будуть всередині елемента списку.
+      Оскільки вони будуть частиною ЕС
+ul.a {
+  list-style-position: outside;
+}
+ul.b {
+  list-style-position: inside;
+}
+
+
+*list-style - скорочена властивість
+ul {
+ list-style: square inside url("sqpurple.gif");
+}
+Порядок властивостей: 
+-list-style-type (якщо вказано list-style-image, значення цієї властивості буде відображатися, якщо зображення з якоїсь причини не може бути відображено)
+-list-style-position (визначає, чи повинні маркери елементів списку з’являтися всередині або поза потоком контенту)
+-list-style-image (визначає зображення як маркер елемента списку)
+
+Якщо якесь значення відсутнє, буде встановлено значення за замовчуванням для відсутньої властивості
+
+Все що додано в тег <ol> або <ul> впливає на весь список.
+Властивість додана в тег <li>, впливає на окремі ЕС
+ol {
+  background: #ff9999;
+  padding: 20;
+}
+
+ul {
+  background: #3399ff;
+  padding: 20;
+}
+
+ol li {
+  background: #ffe5e5;
+  padding: 5px;
+  margin-left: 35px;
+}
+
+ul li {
+  background: #cce5ff;
+  margin: 5px;
+}
+
+Приклади: 
+Список з червоною лівою межею
+ul {
+  border-left: 5px solid red;
+  background-color: #f1f1f1;
+  list-style-type: none;
+  padding: 10px 20px;
+}
+
+Список на всю ширину з межею
+ul {
+  list-style-type: none;
+  padding: 0;
+  border: 1px solid #ddd;
+}
+ul li {
+  padding: 8px 16px;
+  border-bottom: 1px solid #ddd;
+}
+ul li:last-child {
+  border-bottom: none
+}
+*/
+
+
+/* !Таблиці 
+*border-collapse - Вказує, чи повинні бути згорнуті межі таблиці
+*border-spacing	- Задає відстань між межами сусідніх чарунок
+*nth-child()
+*overflow-x:auto; - Адаптативна (чутлива) таблиця
+*overflow:scroll
+*caption-side: bottom; - Задає розміщення заголовка таблиці
+*empty-cells	- Вказує, чи слід відображати межі та фон в пустих чарунках таблиці
+*table-layout - Встановлює алгоритм компонування (макет), що буде використовуватися для таблиці 
+Як виглядає таблиця HTML
+<table>
+  <tr>
+    <th>Имя</th>
+    <th>Фамилия</th>
+    <th>Зарплата</th>
+  </tr>
+  <tr>
+    <td>Peter</td>
+    <td>Griffin</td>
+    <td>$100</td>
+  </tr>
+</table>
+
+
+*Межі 
+Щоб їхвстановити потрібно використати властивість border
+Щоб таблиця заповнила весь екран, потрібно додати width: 100%;
+      *border-collapse - визначає чи повинні межі таблиці згорнутись в одну межу
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+Елемент <th> та <td> мають окрему межу. ТОму якщо додати щє властивість border, вийде подвійна межа
+Межа лише навколо таблиці
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+Вертикальне вирівнювання тексту по низу
+td {
+ height: 50px;
+ vertical-align: bottom;
+}
+*Відступи - padding
+<style>
+table, td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  padding: 15px;
+}
+</style>
+
+
+*Горизонтальні роздільники
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+</style>
+*Виділеня рдяків таблиці при наведені
+Використовується слектор :hover на <tr> щоб виділити рядки таблиці при наведені курсором
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+tr:hover {background-color:#f5f5f5;}
+</style>
+
+*селектор nth-child() використовують для таблиць із зебрами
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+
+
+*overflow-x:auto; - Адаптативна (чутлива) таблиця
+В ній відображається горизонтальна смуга прокрутки, якщо
+екран замалий для відображення всього вмісту
+ЩОб створити адаптативну таблицю, потріно додати елемент
+контейнера (наприклад  <div>)  за допомогою 
+<strong>overflow-x: auto</strong> навколо елемента таблиці
+<div style="overflow-x:auto;">
+  <table>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Points</th>
+    </tr>
+    <tr>
+      <td>Jill</td>
+      <td>Smith</td>
+      <td>50</td>
+    </tr>
+  </table>
+</div>
+
+*overflow:scroll        */
+
+
+
+
+
+
+

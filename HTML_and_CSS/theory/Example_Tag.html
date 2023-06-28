@@ -19,4 +19,183 @@
   <li>Зручний інтерфейс</li>
 </ul>
 
+<!-- Таблиця -->
+<table id="table">
+  <tr>
+    <td>Ваш вік:</td>
+    <td>
+      <label>
+        <input type="radio" name="age" value="young" checked> молодше 18
+      </label>
+      <label>
+        <input type="radio" name="age" value="mature" checked> від 18 до 50
+      </label>
+      <label>
+        <input type="radio" name="age" value="senior" checked> старше 60
+      </label>
+    </td>
+  </tr>
+</table>
+
+
+___________________________________________________________
+<!-- Форма пошуку -->
+<form name="search">
+  <label>Пошук на сайті:
+    <!-- Додає поле для введення -->
+    <input type="text" name="search">
+  </label>
+  <!-- Додає кнопку -->
+  <input type="submit" name="Пошук!">
+</form>
+
+<hr>
+
+<form name="search-person">
+  Пошук відвідувачів:
+  <table id="age-table">
+    <tr>
+      <td>Вік:</td>
+      <td id="age-list">
+        <label>
+          <input type="radio" name="age" value="young">Менше 18</label>
+        <label>
+          <input type="radio" name="age" value="mature">18-50</label>
+        <label>
+          <input type="radio" name="age" value="senior">Більше 50</label>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Додатково:</td>
+      <td>
+        <input type="text" name="info[0]">
+        <input type="text" name="info[1]">
+        <input type="text" name="info[2]">
+      </td>
+    </tr>
+
+  </table>
+
+  <input type="submit" value="Пошук!">
+</form>
+
+
+
+
+
+___________________________________________________________
+<!--  Мигаючий елемент-->
+<div id="elem">Мигаючий елемент</div>
+<script>
+  setInterval(() => elem.hidden = !elem.hidden, 100)
+</script>
+
+
+
+
+
+___________________________________________________________
+<!-- властивосты які залежать від класа -->
+<input type="text" id="elem" value="значення">
+  <script>
+    console.log(elem.type); //text
+    console.log(elem.id); //elem
+    console.log(elem.value); //значення
+  </script>
+
+
+
+___________________________________________________________
+<!--Виводимо кожен елемент списку  -->
+<ul>
+  <li>Животные
+    <ul>
+      <li>Млекопитающие
+        <ul>
+          <li>Коровы</li>
+          <li>Ослы</li>
+          <li>Собаки</li>
+          <li>Тигры</li>
+        </ul>
+      </li>
+      <li>Другие
+        <ul>
+          <li>Змеи</li>
+          <li>Птицы</li>
+          <li>Ящерицы</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Рыбы
+    <ul>
+      <li>Аквариумные
+        <ul>
+          <li>Гуппи</li>
+          <li>Рыба-ангел</li>
+        </ul>
+      </li>
+      <li>Морские
+        <ul>
+          <li>Морская форель</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<script>
+  for (let li of document.querySelectorAll('li')) {
+    //отримуємо назви із текстового вузла
+    let title = li.firstChild.data;
+    //видалення лишніх відступів з кінця рядка 
+    title = title.trim();
+    //Рахуємо к-ть нащадків
+    let count = li.getElementsByTagName('li').length;
+    console.log(title + ': ' + count); //Животные: 9, Животные: 9 ...
+  }
+</script>
+
+
+___________________________________________________________
+<!-- Що виведе властивість  nodeType-->
+<script>
+  console.log(document.body.lastChild.nodeType); //1
+</script>
+
+
+
+___________________________________________________________
+<!-- Тег в коментарях -->
+<script>
+  let body = document.body;
+  body.innerHTML = "<!--" + body.tagName + "-->";
+  console.log(body.firstChild.data); //BODY
+</script>
+//Так як body.tagName == "BODY"
+
+
+___________________________________________________________
+<!-- Виясняємо де в DOM-ієрархії document-->
+//Об'єктом якого коласу являється document можна визначити так
+<script>
+  console.log(document); //#document
+</script>
+//
+<script>
+  console.log(HTMLDocument.prototype.constructor === HTMLDocument); //true
+</script>
+//Щоб отримати ымёя класу в рядковій формі використовується constructor.name. Використаємо це для всього ланцюга прототипів document вверх до класу Node
+<script>
+  console.log(document.constructor.name); //HTMLDocument
+  console.log(HTMLDocument.prototype.__proto__.constructor.name); //Document
+  console.log(HTMLDocument.prototype.__proto__.__proto__.constructor.name); //Node
+</script>
+<script>
+  console.dir(document)
+</script>
+
+
+___________________________________________________________
 <!--  -->

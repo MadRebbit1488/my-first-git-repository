@@ -1,5 +1,7 @@
 
 //Рендеринг?
+//PointerEvent ? - детальна інфо про родію яка відбулась
+//KeyboardEvent / keydown
 
 /*  
 DOM(Document Object Model) - це об'єктне уявлення вихідного HTML-кода документа
@@ -41,4 +43,55 @@ Document там знаходиться для взаємодії з IPA DOM-tree
 
 //Вибір елемента по CSS-селектору
 //* querySelector - дозволяє вибрати якийсь елемент дерева за допомогою селектора
-console.log(document.querySelector());
+console.log(document.querySelector('.'));
+
+//Отримуємо вміст об'єкту document
+addEventListener('load', () => {
+console.log(document.head);
+}); 
+
+const panelText = document.querySelector('.panel').innerHTML;
+console.log(panelText);  // I love POPA
+
+document.querySelector('.input').value = 'Text'; // в полі вводу на сторінці з'являється зазначений текст
+
+_______________________________________________________________
+//! Події - це сигнал від браузера про те, що щось відбулось
+
+
+
+//!Обробка натискання мишею
+//*onclick - звязує в HTML натискання на кнопку з ф-цією яка описана в скрипті
+//*innerText - дозволяє задавати або отримувати вміст елемента і його нащадків. Не повертає вміст прихованих елементів
+//Додавання обробки подій
+//addEventListener приймає два параметра: 1 що за обробник, функція в якій будуть відбуватись події
+//Обробка подій на клік
+document.querySelector('.button').addEventListener('click',function(){
+  //Отримуємо текст інпут
+const input = document.querySelector('.input').value;
+    if(!input){
+    return;
+    }
+    //Вивід тексту. Звернення до класу panel,innerText рівний input
+document.querySelector('.panel').innerText = input;
+  //console.log(input); // отримуємо дані із поля вводу
+  //Очищення поля вводу після натискання
+document.querySelector('.input').value = '';
+});
+
+//Скорочена версія обробки подій на клік. Ф-нція викликається через HTML атрибутом onclick з вказаною ф-цією
+function changeClick() {
+    const input = document.querySelector('.input').value;
+    if(!input){
+        return;
+    }
+document.querySelector('.panel').innerText = input;
+document.querySelector('.input').value = '';
+}
+/* Замість того щоб кожного разу викликати властивість яка спеціалізується на кліках, можна використовувати методи подій для виклику ф-ції із JS*/
+
+
+
+
+
+//! Обробка подій клавіатури
