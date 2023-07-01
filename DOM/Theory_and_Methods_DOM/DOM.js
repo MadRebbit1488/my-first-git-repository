@@ -123,6 +123,40 @@ HTML-елементів
 -getComputedStyle(element, [pseudo]) - повертає всі стилі CSS  елементу
 
 *DocumentFragment - спеціальний DOM-вузол, який слугує обгорткою для передачі списку вузлів
+
+
+*РОЗМІР І ПРОКРУТКА ЕЛЕМЕНТА
+    Зрозок елемента
+    Елементи мають такі геометричні властивості:
+    Зовнішні:
+        -offsetParent / offsetLeft/offsetTop 
+        -offsetWidth / offsetHeight
+    Внутрвішні:
+        -clientTop / clientLeft 
+        -clientWidth / clientHeight
+        -scrollWidth / scrollHeight
+        -scrollLeft / scrollTop
+    Не варто брати ширину/висоту з CSS
+    Перевірка чи браузер резервує смугу прокрутки:
+
+
+  *РОЗМІРИ ВІКНА І ПРОКРУТКИ
+    -Ширина/висота вікна
+    -Ширина/висота документа
+    -Отримання поточної позиції прокрутки
+      -window.pageXOffset / pageYOffset - спеціальні властивості у яких доступна прокрутка*window.scrollTo(pageX,pageY) / window.scrollBy(x,y) / elem.scrollIntoView(top) - просте та універсальне рішення прокрутки
+    -document.body.style.overflow = 'hidden' - заборона прокручування
+
+
+  *КООРДИНАТИ
+    -elem.getBoundingClientRect() - повертає координати у контексті вікна для мінімального за розмірами проямокутника, який вміщує elem у вигляді об'єкта вбудованого класу DOMRect
+    -document.elementFromPoint(x, y) - повертає найбільш вкладений елемент вікна з координатами (x, y)
+    -position:fixed; координати відносно вікна 
+    -position:absolute  координати відносно документа
+
+
+
+
  */
 
 //!DOM - об'єктна модель документа
@@ -1757,3 +1791,672 @@ ____________________________________________________________________
   </script>
 
   Потрібно обов'язково додати оператор "..." інакше виводом будуть не числа а об'єкт -> [object HTMLLIElement],[object HTMLLIElement],[object HTMLLIElement]    */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ____________________________________________________________________
+  //! РОЗМІР І ПРОКРУТКА ЕЛЕМЕНТА
+/* Властивості JS які дозволяють читати інфо про ширину, висоту елемента та інші геометричні характеристики. Потрібні під час переміщення або позиціонування елементів в JS 
+  
+*Зразок елемента:
+<style type="text/css">
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  #example {
+    width: 300px;
+    height: 200px;
+    overflow: auto;
+    border: 25px solid #E8C48F;
+    padding: 20px;
+  }
+  .key {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+</style>
+</head>
+<bod>
+<div id="example">
+  ...Text...
+</div>
+<div id="mouse-wrap">Mouse coordinates: <span id="mouse">...</span></div>
+<div id="info"></div>
+<script>
+  let props = {
+    geometry: ['clientLeft', 'clientTop', 'clientWidth', 'clientHeight', 'offsetWidth', 'offsetHeight', 'scrollWidth', 'scrollHeight'],
+    scroll: ['scrollLeft', 'scrollTop'],
+    offsetParent: ['offsetParent', 'offsetLeft', 'offsetTop']
+  };
+  info.innerHTML = '<h3>Click to see the value:</h3>';
+  for (let k in props) {
+    info.innerHTML += `<h4>${k}</h4>`;
+    let prop = props[k];
+    for (let i = 0; i < prop.length; i++) {
+      info.innerHTML += "<span class='key'>" + prop[i] + '</span>: <span id="' + prop[i] + '">&nbsp;</span>' + " "
+      i++;
+      if (i < prop.length) {
+        info.innerHTML += "<span class='key'>" + prop[i] + '</span>: <span id="' + prop[i] + '">&nbsp;</span>';
+      }
+      info.innerHTML += "<br/>";
+    }
+  }
+  document.onclick = function (event) {
+    let target = event.target;
+    if (!target.classList.contains('key')) return;
+
+    let prop = target.innerHTML;
+    let value = example[prop];
+    value = value.tagName || value;
+    document.getElementById(prop).innerHTML = value;
+  };
+  document.onmousemove = function (e) {
+    document.getElementById('mouse').innerHTML = Math.round(e.clientX) + ':' + Math.round(e.clientY);
+  };
+</script>
+  
+
+Дивлячись на код це не помітно, але якщо в div записати багато тексту, з'явиться смуга прокрутки. Деякі браузери резервують місце для неї беручи з ширини вмісту.Тобто якщо ширина вмісту 300px, але ширина смуги прокрутки 16px то залишається на вміст 284px і це потрібно врахувати 
+
+
+*ГЕОМЕТРІЯ
+
+  Елементи мають такі геометричні властивості:
+    Зовнішні:
+        -offsetParent
+        -offsetLeft
+        -offsetTop 
+        -offsetWidth
+        -offsetHeight
+    Внутрвішні:
+        -clientTop 
+        -clientLeft 
+        -clientWidth 
+        -clientHeight
+        -scrollWidth
+        -scrollHeight
+        -scrollLeft 
+        -scrollTop
+    Не варто брати ширину/висоту з CSS
+    Перевірка чи браузер резервує смугу прокрутки:
+
+
+
+*offsetParent - найближчий предок, який браузер використовує для обчислення координат під час візуалізації
+Найближчий опозиційний предок td, th, table, body
+    1. CSS-позиціонування (position is absolute, relative, fixed або sticky), 
+    2. Або <td>, <th>, або <table>
+    3. Або <body>
+
+Існує декілька випадків коли offsetParent = null:
+1. Для елементів, що не відображаються (display:none або ті що поза документом)
+2. Для <body> та <html>
+3. Для елементів з position:fixed
+
+*offsetLeft / offsetTop - надають координати x/y відносно лівого верхнього кута offsetParent
+
+Приклад: Внутрішній <div> має <main> як offsetParent і offsetLeft/offsetTop зсуваються від свого лівого верхнього кута на 180
+
+<main style="position: relative;" id="main">
+  <article>
+    <div id="example" style="position: absolute; left: 180px; top: 180px">...</div>
+  </article>
+</main>
+<script>
+  console.log(example.offsetParent.id); //main
+  console.log(example.offsetLeft); //180
+  console.log(example.offsetTop); //180
+  console.log(example); //<div id="example" style="position: absolute; left: 180px; top: 180px">...</div>
+</script>
+
+
+offsetParent / offsetLeft / offsetTop  - рідко використовуються, найбільш зовнішні геометричні властивості
+
+
+*offsetWidth і offsetHeight це є сам елемент, зовнішня ширина/висота елемента включаючи рамки
+Це дві найпростіші властивості. Вони забезпечують зовнішню ширину/висоту елемента. ТОбто його повний розмір, включаючи рамки (border), внутрішні відступи (padding), смугу прокрутки. ТОбто якщо border 25px, padding 20px, content width 284px, scrollbar 16px = offsetWidth => 390px. Аналогічно з offsetHeight
+Геометричні властивості вираховуються лише для відображених елементів і приймають значення null для елементів які не відображаються. Якщо елемент або хтось із його предків має display:none або його немає в документі, то всі геометричні властивості дорівнюють 0 (offsetWidth, offsetHeight = 0 а  offsetParent = null)
+Це можна використати щоб перевірити чи приховано елемент:  
+Поверне true для елементів які є на екрані, але мають нульовий розмір
+function isHidden(elem){
+  return !elem.offsetWidth && !elem.offsetHeigth;
+}
+
+
+
+*clientTop / clientLeft  - відносні координати внутрішньої сторони від зовнішньої
+Властивості для вимірювання рамки всередині елемента
+Коли документ написано справа на ліво(ОС арабською) то смуга прокрутки розташовується ліворуч, а тому clientLeft буде включати в себе ширину смуги прокрутки.
+Приклад: 
+clientTop = 25
+clientLeft = 25 + ширина смуги прокрутки 16 = 41
+Відстані від верхнього лівого зовнішнього кута до верхнього лівого внутрішнього (вміст + відступ) кута. Для ОС, орієнтованої зліва направо, це завжди ширина лівої/верхньої рамок. Для ОС, орієнтованої справа наліво, вертикальна смуга прокрутки розташована ліворуч, тому clientLeft також включає її ширину.
+
+
+
+*clientWidth / clientHeight - забезпечують розмір області всередині меж елемента. Включають ширину вмісту разом із відступами, але без смуги прокрутки
+Я так розумію дані елементи занходяться на межі border і padding
+  clientHeight - знаходиться всередині меж елемента.  Включає в себе  CSS-висотау + paddingTop + paddingBottom
+  Якщо немає відступів можна використати властивості щоб отримати розмір області вмісту. Так як clientWidth/Height це саме область вмісту всередині рамок і смуги прокрутки (якщо вона є ). 
+
+
+
+*scrollWidth / scrollHeight - 
+Схожі на clientWidth/clientHeight, але включають прокручені (приховані) частини
+    scrollHeight - повна внутрішня висота області вмісту, включаючи прокручені частини.
+    scrollWidth - повна внутрішня ширина, якщо немає горизонтальної прокрутки, то вона дорівнює clientWidth
+Можна використовувати ці властивості щоб розширити елемент на всю ширину/висоту
+Приклад: 
+<p>Натисніть кнопку, щоб розгорнути елемент:</p>
+<div id="element" style="width:300px;height:200px; padding: 0;overflow: auto; border:1px solid black;">text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text</div>
+<p><button style="padding:0" onclick="element.style.height = `${element.scrollHeight}px`">element.style.height =
+<code>${element.scrollHeight}px</code></button></p>
+
+
+
+
+
+
+
+*scrollLeft / scrollTop - це ширина/висота прихованої, прокрученої частини елемента. Іншими словами scrollTop означає скільки прокручено вгору.
+Інші геометричні властивості доступні тільки для читання , але scrollLeft/scrollTop можна змінити і абраузер прокрутить елемент відповідно до змін
+Приклад: Якщо клацнути елемент буде виконано код elem.scrollTop += 10 це змусить вміст елемента прокрутитись на 10px вниз
+
+<div onclick="this.scrollTop+=10" style="cursor:pointer;border:1px solid black;width:100px;height:80px;overflow:auto">
+  Click
+  <br>Me<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9
+</div>
+
+Якщо встановити scrollTop  на 0 або навпаки велике значення, це змусить елемент прокрутитись до самого вурху або низу.
+
+
+*Не варто брати ширину/висоту з CSS
+За допомогою getComputedStyle можна зчитати CSS висоту/ширину
+Причини цього не робити: 
+1. CSS width/height залежить від іншої властивості: box-sizing яка визначає що таке ширина та висота CSS. Зміни в box-sizing для CSS можуть зламати JS
+2. CSS width/height можуть бути auto для вбудованого елемента
+<span id="elem">Hello!</span>
+<script>
+  console.log(getComputedStyle(elem).width) //auto
+</script>
+З точки зору CSS це нормально, але для JS потрібний точний розмір в px який буде використовуватись для обчилень
+3. Смуга прокрутки. Якщо код добре працює без смуги прокрутки і коли вона є починає працювати з помилкати, то це тому, що вона займає простір у вмісті в деяких браузерах. Отже реальна ширина доступна для вмісту менша за ширину CSS. І clientWidth/clientHeight враховують це 
+
+Але з getComputedStyle(elem).width ситуація інша. Chrome повертає реальну внутрішню ширину без смуги прокрутки, Firefox - CSS-ширину(ігнорує прокрутку). Це причина не використовувати getComputedStyle, а покладатись на геометричні властивості. 
+
+*Перевірка чи браузер резервує смугу прокрутки:
+*Код
+<div id="elem" style="overflow-y:scroll;width:300px;height:200px;border:1px solid black">
+  text text text text text text text text text text text text text text text text text text text text text text text
+  text text text text text text text text text text text text text text text text text text text
+  text text text text text text text text text text text text text text text text text text text text text text text
+  text text text text text text text text text text text text text text text text text text text
+  text text text text text text text text text text text text text text text text text text text text text text text
+  text text text
+</div>
+The element has <code>style="width:300px"</code>
+<br>
+<button onclick="alert( getComputedStyle(elem).width )">alert( getComputedStyle(elem).width )</button>
+*Посилання
+<!-- <iframe class="code-result__iframe" data-trusted="1" style="height:300px"
+    src="https://uk.js.cx/article/size-and-scroll/cssWidthScroll/"></iframe> --> 
+
+Chrome резервує місце для смуги прокрутки
+CSS-ширина => 300px
+clientWidth => 283px
+
+*Відмінності: CSS ширина проти clientWidth
+Відмінності:
+
+1.clientWidth є числовим, а getComputedStyle(elem).width повертає рядок із px в кінці.
+2.getComputedStyle може повертати нечислову ширину, наприклад "auto" для вбудованого елемента.
+3.clientWidth це внутрішня область вмісту елемента плюс відступи, тоді як ширина CSS (зі стандартним box-sizing) це внутрішня область вмісту без відступів.
+4.Якщо є смуга прокрутки і браузер резервує для неї простір, деякі браузери віднімають цей простір із ширини CSS (тому що він більше не доступний для вмісту), а деякі ні. Властивість clientWidth завжди однакова: розмір смуги прокрутки віднімається при її наявності.
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_________________________________________________________________________
+//!РОЗМІРИ ВІКНА І ПРОКРУТКИ
+/* Зміст:
+*Ширина/висота вікна
+*Ширина/висота документа
+*Отримання поточної позиції прокрутки
+      *window.pageXOffset / pageYOffset - спеціальні властивості у яких доступна прокрутка*window.scrollTo(pageX,pageY) / window.scrollBy(x,y) / elem.scrollIntoView(top) - просте та універсальне рішення прокрутки
+*document.body.style.overflow = 'hidden' - заборона прокручування
+
+Щоб визначити ширину/висоту браузера, документа включаючи прокручену частину , прокрутка сторінки - використовують JS. І для визначення цього всього можна використати кореневий елемент докумета document.documentElement, який відповідає тегу <html>. Але є щє додаткові методи
+
+*Ширина/висота вікна
+ДЛя цього використовуєтьс clientWidth/clientHeight із document.documentElement:
+<p>Наприклад, ця кнопка показує висоту  вікна:</p>
+<p><button onclick="alert(document.documentElement.clientHeight)">alert(document.documentElement.clientHeight)</button>   //771
+<button onclick="alert(document.documentElement.clientWidth)">
+alert(document.documentElement.clientHeight)</button>  //798
+</p>
+
+Браузери також підтримують властивість //*window.innerWidth/innerHeight. 
+Але дана властивість повертає ширину/висоту враховуючи смугу прокрутки. На відмінну від clientWidth/clientHeight які надають ширину/висоту віднявши розмір прокрутки
+<script>
+  console.log(window.innerWidth); // повна ширина вікна
+  console.log(document.documentElement.clientWidth); // ширина вікна мінус смуга прокрутки
+</script>
+У більшості випадків потрібна доступна ширина вікна, тому використовується documentElement.clientHeight/clientWidth.
+
+Геометричні властивості верхнього рівня працюють інакше, тому якщо в HTML немає <!DOCTYPE HTML> можуть відбуватись нетипові речі, тому потрібно завжди вказувати <!DOCTYPE HTML>
+
+
+
+*Ширина/висота документа
+Корінний елемент document.documentElement охоплює весь вміст, тому можна виміряти весь розмір документа як //*document.documentElement.scrollWidth/scrollHeight
+Але можуть виникнути складнощі, так як цей елемент для всієї сторінки не завжди працює належним чином. Так у Chrome/Safari/Opera, якщо немає прокрутки, то documentElement.scrollHeight може бути меншим за documentElement.clientHeight.
+Щоб надійно отримати висоту документа, потрібно взяти максимум із цих властивостей
+<script>
+  let scrollHeight = Math.max(
+    document.body.scrollHeight, document.documentElement.scrollHeight,
+    document.body.offsetHeight, document.documentElement.offsetHeight,
+    document.body.clientHeight, document.documentElement.clientHeight
+  );
+  console.log('Повна висота документа з прокрученою частиною: ' + scrollHeight);  //Повна висота документа з прокрученою частиною: 401
+</script>
+Так кращє, хося це не логічно, але ці невідповідності походять із давніх часів
+
+
+
+*Отримання поточної позиції прокрутки
+Елементи DOM містять свій поточний стан прокрутки у властивостях scrollLeft/scrollTop. 
+Стан прокрутки документа міститься в document.documentElement.scrollLeft/scrollTop, так працює у більшості браузерів.
+
+*window.pageXOffset / pageYOffset - спеціальні властивості для читання поточної прокрутки
+Доступно тільки для читання
+console.log('Поточна прокрутка зверху: ' + window.pageYOffset); //Поточна прокрутка зверху: 0
+console.log('Поточна прокрутка зліва: ' + window.pageXOffset);  //Поточна прокрутка зліва: 0
+Також доступні як властивості window scrollX / scrollY це псевдоніми window.pageXOffset / pageYOffset
+Вони існують з історичних причин, але цілком однакові
+
+
+*window.scrollTo(pageX,pageY) / window.scrollBy(x,y) / elem.scrollIntoView(top) - простіше та універсальніше рішення прокрутки
+
+    * Метод scrollBy(x,y) - прокручує сторінку відносно її поточної позиції: 
+    Приклад: scrollBy(0, 10) прокручує сторінку на 10px  вниз
+    <p><button onclick="window.scrollBy(0,10)">window.scrollBy(0,10)</button></p>
+
+    *Метод scrollTo(pageX,pageY) - прокручує сторінку до абсолютних координат
+    Так що верхній лівий кут видимої частини має координати (pageX,pageY) відносно верхнього лівого кутадокумента. Це теж саме що і scrollLeft/scrollTop
+    Приклад: Щоб прокрутити до самого початку, можна використати scrollTo(0,0)
+    <p><button onclick="window.scrollTo(0,0)">window.scrollTo(0,0)</button></p>
+    Ці методи працюють для всіх брацзерів однаково
+
+    *elem.scrollIntoView(top) - виклик даного метода прокручує сторінку таким чином, щоб зробити elem видимим(вирівняти з верхньою або нижньою частиною вікна)
+      -Якщо top=true(значення за замовчуванням) то сторінка  буде прокручена так, щоб elem з'явився у верхній частині вікна. Верхній край елемента буде вирівняний з верхньою частиною вікна
+      -Якщо top=false, то сторінка прокручається так, щоб elem з'явився знизу. Нижній край елемента буде вирівняний з нижньою частиною вікна
+      Приклад1: 
+      Кнопка прокручує сторінку, щоб розмістити себе у верхній частині вікна
+      <p><button onclick="this.scrollIntoView()">this.scrollIntoView()</button></p>
+
+      Прикалад2:
+      Кнопка прокручує торінку, щоб ромістити себе у нижній частині вікна
+      <p><button onclick="this.scrollIntoView(false)">this.scrollIntoView(false)</button></p> 
+
+
+Щоб прокрутити сторінку за допомогою JS, її DOM має бути повністю створено
+Звичайні елементи прокручуються зміною scrollTop/scrollLeft. ТОбто використовуючи document.documentElement.scrollTop/scrollLeft ( окрім Safari, де замість цього слід використовувати document.body.scrollTop/Left)
+
+
+
+
+//*document.body.style.overflow = 'hidden' - заборона прокручування
+Використовується щоб зробити документ непрокручуваним, наприклад коли потрібно закрити сторінку повідомленням. Сторінка завмре у поточній позиції прокручування
+Приклад: 
+Зупиняє прокрутку
+<p><button onclick="document.body.style.overflow='hidden'">document.body.style.overflow='hidden'</button></p>
+Відновлює прокрутку
+<p><button onclick="document.body.style.overflow=''">document.body.style.overflow=''</button></p>
+
+Ця ж техніка використовується не тільки для document.body а й для інших елементів.
+Недолік в тому що зникає смуга прокрутки. Якщо вона займала деякий простір, то це місце звільняється і вміст стрибає щоб заповнити його.
+Це можна обійти якщо порівняти clientWidth до і після заборони прокручування. Якщо ширина збільшилась, потрібно додати padding до document.body замість смуги прокрутки, щоб зберегти ширину вмісту     */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_________________________________________________________________________
+//!КООРДИНАТИ
+/* 
+*elem.getBoundingClientRect() - повертає координати у контексті вікна для мінімального за розмірами проямокутника, який вміщує elem у вигляді об'єкта вбудованого класу DOMRect
+*document.elementFromPoint(x, y) - повертає найбільш вкладений елемент вікна з координатами (x, y)
+*position:fixed; координати відносно вікна 
+*position:absolute  координати відносно документа
+
+
+Слугують для переміщення елементів на екрані
+Більшість відповідних методів JS працюють з однією із двох систем координат: 
+    *Відносно вікна браузера - схоже на position:fixed, обчилюється від верхнього лівого кута вікна браузера.
+    Позначається як clientX / clientY
+    *Відносно документа - схожен на position:absolute у корені документа, обчислюється від верхнього лівого кута документа
+    Позначається pageX / pageY
+
+Коли сторінка прокручена до самого початку, то верхній лівий кут вікна точно збігається з верхнім лівим кутом доумента, тому їх системи координат також збігаються. Але якщо документ прокрутити, то координати елементів відносно вікна змінюються, а координати відносно документа залишаються сталими
+
+
+?Повертає координати відносно вікна
+*elem.getBoundingClientRect() - повертає DOMRect об'єкт, що надає інфо про розмір елемента та його положення відносно вікна перегляду. Аргументи не  приймає
+Поверне значення DOMRect об'єкта який є найменшим прямокутником , який містить весь елемент включаючи його відступи та ширину рамки
+DOMRect описує розмір і положення прямокутника 
+Основні властивості DOMRect:
+  -x/y - координати X/Y початку прямокутника відносно вікна
+  -width/height - ширина/висота прямокутника(можуть бути від'ємними)
+Крім того в об'єкті містяться похідні властивості:
+    -top/bottom - Y-координата для верхнього/нижнього краю прямокутника
+    -left/right - X-координата для лівого/правого краю прямокутника
+  
+Приклад: 
+Координати кнопки відносно вікна 
+<p><input id="brTest" type="button" value="Отримати координати цієї кнопки за допомогою button.getBoundingClientRect()"
+    onclick='showRect(this)' /></p>
+<script>
+  function showRect(elem) {
+    let r = elem.getBoundingClientRect();
+    alert(`x:${r.x}
+    y:${r.y}
+    width:${r.width}
+    height:${r.height}
+    top:${r.top}
+    bottom:${r.bottom}
+    left:${r.left}
+    right:${r.right}
+`);
+  }
+</script>
+
+Якщо прокрутити сторінку і натиснути кнопку знову, то по мірі змінення положення кнопки змінюються і її координати вікна(y/top/bottom, при вертикальній прокрутці)
+
+x/y та width/height повністю описують прямокутник. З них можна легко обчислити похідні властивості: 
+- left = x
+- top = y
+- right = x + width
+- bottom = y + height
+
+Координати можуть бути десятковими дробами: 10.5 . Це нормально, тому що внутрішньо браузер викристовує дроби у своїх обчисленнях. Їх не потрбно округлювати коли встановлюєтья значення style.left/top. Координати можуть бути від'ємним
+
+Математично рямокутник визначається початковою точкою (x,y) і вектором напрямку (width,height), тому top/left це додаткові похідні властивості призначені для зручності
+Від'ємні значення width/height означають, що прямокутник починається з нижнього правого кута, а потім зростає ліворуч в гору. В такому випадку left/top не дорівнюють x/y. Але elem.getBoundingClientRest() завжди повертає позитивні значення ширини/висоти.
+
+Internet Explorer не підтримує x/y з історичних причин. Тож в таком випадку або створюється поліфіл або використовуєтся left/top оскільки вони завжди дорівнюють x/y
+
+Координати right/bottom відрізняються від одноймених властивостей CSS.
+Так як в CSS властивість right означає відстань від правого краю, а bottom - відстань від нижнього краю.
+У JS це не так, усі координати вікна відраховуються від верхнього лівого кута, включаючи right/bottom 
+
+Приклад: Отримуємо об'єкт DOMRect, що представляє обмежуувальний клієнтський прямокутник простого <div> елемента, і друкує його властивості під ним
+<style>
+  div {
+  width: 400px;
+  height: 200px;
+  padding: 20px;
+  margin: 50px auto;
+  background: purple;
+}
+</style>
+<div></div>
+<script>
+  let elem = document.querySelector('div');
+  let rect = elem.getBoundingClientRect();
+  for(let key in rect){
+    if(typeof rect[key] !== 'function'){
+      let para = document.createElement('p');
+      para.textContent = `${key} : ${rect[key]}`;
+      document.body.appendChild(para);
+    }
+    
+  }
+</script>
+Властивості: x : 179, y : 50, width : 440,height : 240 і тд
+
+Приклад: Демонстрація, як змінюється обмежувальний напрямок клієнта під час прокручування документа
+<style>
+  div#example {
+  width: 400px;
+  height: 200px;
+  padding: 20px;
+  margin: 50px auto;
+  background: purple;
+}
+
+body {
+  padding-bottom: 1000px;
+}
+p {
+  margin: 0;
+}
+</style>
+<div id="example"></div>
+<div id="controls"></div>
+<script>
+  function update(){
+    const container = document.getElementById('controls');
+    const elem = document.getElementById('example');
+    const rect = elem.getBoundingClientRect();
+
+    container.innerHTML = '';
+    for(let key in rect){
+      if(typeof rect[key] !== 'function'){
+        let para = document.createElement('p');
+        para.textContent = `${key} : ${rect[key]}`;
+        container.appendChild(para);
+      }
+    }
+  }
+  document.addEventListener('scroll', update);
+  update();
+</script>
+Властивості: x : 170.5, y : -50, width : 440, height : 240, top : -50, right : 610.5, bottom : змінює свої властивості від 290 до -126
+
+
+
+*document.elementFromPoint(x, y) - повертає самий верхній Element у вказаних координатах ( відносно вікна перегляду )
+Синтаксис:
+let elem = document.elementFromPoint(x, y);
+Приклад:
+Код виділяє та виводить тег елемента, який зараз знаходиться в середині вікна
+<script>
+  let centerX = document.documentElement.clientWidth / 2;
+  let centerY = document.documentElement.clientHeight / 2;
+  let elem = document.elementFromPoint(centerX, centerY);
+  elem.style.background = "red";
+  alert(elem.tagName);
+</script>
+Оскільки код використовує координати відносно вікна, то елемент може відрізнятися залежно від поточної позиції прокручування.
+
+Якщо елемент у вказаній точці належить іншому документу, повернеться батьківський елемент цього документа. 
+Якщо елемент у даній точці є анонімним або створеним XBL вмістом, таким як смуга прокрутки текстового поля, тоді повернеться перший неанонімний елемент-предок
+Для координат які знаходяться поза вікном elementFromPoint повертає null, так як він працює лише якщо координати (x, y) знаходяться у видимій області вікна.
+Якщо будь-яка з координат від'ємна або більша ніж ширина/висота вікна, то повертається null.
+
+Типова помилка яка виникає якщо не додати перевірку:
+let elem = document.elementFromPoint(x, y);
+Якщо координати виходять за межі вікна, то elem = null
+elem.style.background = '';   Помилка
+
+Приклад: Створено дві кнопки які дозволяють встановити колір елементу абзацу розташованого під координатами (2, 2)
+<p id="para1">Some text here</p>
+<button onclick="changeColor('blue')">Blue</button>
+<button onclick="changeColor('red')">Red</button>
+<script>
+  function changeColor(newColor){
+    elem = document.elementFromPoint(2, 2);
+    elem.style.color = newColor;
+  }
+</script>
+Метод changeColor() отримує елемент, рощташований у вказаній точці, а потім встановлює для поточного color властивості переднього плану цього елемента, визначений параметром newColor
+
+
+
+
+
+
+*position:fixed; координати відносно вікна 
+Найчастіше координати потрібні щоб щось розташувати. 
+Показати щось поблизу елемента можна за допомогою getBoundingClientRect  для отримання його координат, а потім CSS position розом з left/top (або right/bottom)
+
+Приклад: Ф-ція виводить повідомелння під elem
+<script>
+  let elem = document.getElementById("coords-show-mark");
+  function createMessageUnder(elem, html) {
+    створюємо елемент повідомлення
+    let message = document.createElement('div');
+    тут краще було б використати CSS клас
+    message.style.cssText = "position:fixed; color: red";
+    призначаємо координати, не забуваємо про "px"!
+    let coords = elem.getBoundingClientRect();
+    message.style.left = coords.left + "px";
+    message.style.top = coords.bottom + "px";
+    message.innerHTML = html;
+    return message;
+  }
+
+  Використання:
+  додаємо повідомлення у документ на 5 секунд
+  let message = createMessageUnder(elem, 'Привіт, світ!');
+  document.body.append(message);
+  setTimeout(() => message.remove(), 5000);
+</script>
+
+<p><button id="coords-show-mark">Кнопка з id=“coords-show-mark”, під нею з’явиться повідомлення</button></p>
+ 
+Код можна змінити щоб показати повідомленян ліворч/ праворуч застосовуючи CSS-анімацію. Але якщо прокрутити сторінку повідомлення відпливає від кнопки. Це тому що елемент позиціонується за допомогою position:fixed, тому він залишається на томуж місці у вікні під час прокрутки
+щою це змінити потрібно використовувати систему координат відносно документа та position: absolute
+
+
+
+
+*position:absolute  координати відносно документа
+Вони починаються з верхнього лівого кута документа, а не вікна
+Отримавши вірні координати і використавши position:absolute i top/left можна розмістити щось у певному місці документа таким чином, щоб воно залишалось там навіть під час прокручування сторінки
+
+Не існує стандартного методу для отримання координат елементів відносно документа
+Дві системи координат з'єднуються за формулою:
+-pageY = clientY + висота прокрученої вертикальної частини документа
+-pageX = clientX + ширина прокрученою горизонтальної частини документа
+
+?Отримуємо координати відносно документа: elem.getBoundingClientRect() + значення поточної прокрутки 
+
+Приклад: ф-ція візьме координати вікна з elem.getBoundingClientRect() і додасть до них значення поточної прокрутки
+Отримуємо координати елемента відносно документа
+function getCoords(elem) {
+    let box = elem.getBoundingClientRect();
+
+    return {
+      top: box.top + window.pageYOffset,
+      right: box.right + window.pageXOffset,
+      bottom: box.bottom + window.pageYOffset,
+      left: box.left + window.pageXOffset
+    };
+  }
+
+Модифікована ф-ція createMessageUnder
+function createMessageUnder(elem, html){
+    let message = document.createElement('div');
+    message.style.cssText = "position:absolute; color: red;"
+
+    let coords = getCoords(elem);
+
+    message.style.left = coords.left + 'px';
+    message.style.top = coords.top + 'px';
+    message.innerHTML = html;
+    return message;
+  }
+Повідомлення залишиться біля елемента під час прокрутки, тому що використовується position:absolute 
+
+
+Ост так буде првильно виглядати суцільний код
+<p><button id="coords-show-mark">Кнопка з id=“coords-show-mark”, під нею з’явиться повідомлення</button></p>
+<script>
+  let elem = document.getElementById("coords-show-mark");
+    function createMessageUnder(elem, html) {
+      // створюємо елемент повідомлення
+      let message = document.createElement('div');
+      // тут краще було б використати CSS клас
+      message.style.cssText = "position:absolute; color: red";
+      // призначаємо координати, не забуваємо про "px"!
+      let coords = getCoords(elem);
+      message.style.left = coords.left + "px";
+      message.style.top = coords.bottom + "px";
+      message.innerHTML = html;
+      return message;
+    }
+    // Використання:
+    // додаємо повідомлення у документ на 5 секунд
+    let message = createMessageUnder(elem, 'Привіт, світ!');
+    document.body.append(message);
+    setTimeout(() => message.remove(), 5000);
+
+  function getCoords(elem) {
+    let box = elem.getBoundingClientRect();
+    return {
+      top: box.top + window.pageYOffset,
+      right: box.right + window.pageXOffset,
+      bottom: box.bottom + window.pageYOffset,
+      left: box.left + window.pageXOffset
+    };
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+*/
