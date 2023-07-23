@@ -2,6 +2,7 @@ $PSVersionTable.PSVersion
 git --help
 git status
 git push
+about:blank
 
 
 

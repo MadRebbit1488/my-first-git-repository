@@ -728,3 +728,63 @@ let answer3 = [coords.left + field.clientLeft, coords.top + field.clientTop];
 
 
 */
+
+
+
+
+
+
+
+__________________________________________________________________________
+//Задача 21
+//*Покажіть примітку біля елементу
+/* Створіть ф-цію positionAt(anchor, position, elem) яка позиціонує elem залежно від position біля елемента anchor
+Аргумент position має бути рядком з будь-яким із 3 значеннь:
+1. "top" – розмістити elem праворуч над anchor
+2. "right" – розмістити elem безпосередньо праворуч від anchor
+3. "bottom" – розмістити elem прямо під anchor
+
+
+
+*/
+
+
+
+______________________________________________
+//Задача 22
+//*Отримання DOM-елементів
+
+//Отримати в консоль контент
+let elem1 = document.querySelector('.one').innerText;
+console.log(elem1) //Елемент 1
+//Вказуємо що ми беремо сусідній з цим класом div
+let elem2 = document.querySelector('.one ~ div').innerText;
+console.log(elem2) //Елемент 2
+let elem3 = document.getElementById('two').innerText;
+console.log(elem3); //Елемент 3
+let elem4 = document.querySelector('[user-id]').innerText;
+console.log(elem4); //Елемент 4
+
+//Трохи інші варіанти розв'язку
+let elemOne = document.querySelectorAll('.one')
+console.log(elemOne);  //NodeList(2) [div.one, div.one]
+let elemOneOne = document.querySelectorAll('.one')[0].innerText;
+console.log(elemOneOne);  //Елемент 1
+let elemOneTwo = document.querySelectorAll('.one')[1].innerText;
+console.log(elemOneTwo);  //Елемент 2 /* 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+

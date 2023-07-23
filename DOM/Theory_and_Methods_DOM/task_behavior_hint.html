@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Поведінка 'Підказка</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="./console.js"></script>
+  <style>
+    body {
+      height: 20000px;
+    }
+
+    .tooltip {
+      position: fixed;
+      padding: 10px 20px;
+      border: 1px solid #b3c9ce;
+      border-radius: 4px;
+      text-align: center;
+      font: italic 14px/1.3 sans-serif;
+      color: #333;
+      background: #fff;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <p><strong>Мета:</strong>
+      Потрібен код JS який реалізє поведінку 'підказка'.
+      При наваденні миші на елемент з атрибутом data-tooltip, над ним маж показатись підказка і приховуватись при наведенні на
+      інший елемент.
+      В задачі допускається, що у всіх елементах з атрибутом data-tooltip, тільки текст. Тобто в них немає вкладених тегів.
+      <h4>Деталі оформлення:</h4>
+      <ul>
+        <li>Відступ від підказки до елемена з data-tooltip првинен бути 5px по висоті</li>
+        <li>Підказка, по можливості, має бути посередині елемента</li>
+        <li>Підказка не має вилазити за межі екрана, в тому числі якщо сторінка частково прокручена, якщо не можна показати зверху</li>
+        <li>показати знизу елемента</li>
+        <li>Текст підказки брати із значення атрибута data-tooltip. Це маже бути довільний HTML</li>
+      </ul>
+    
+      <h4>Для рішення знадобляється події:</h4>
+      <li>mouseover спрацьовує коли вказівник миші знаходиться на елементі</li>
+      <li>mouseout спрацьовує коли вказівник миші йде з елемента</li>
+      <p>
+        Використання делегуванян подій: встановлення обох обробників на елемент document, щоб відслідковувати наведення і
+        відведення курсора не алемент з атрибутом data-tooltip і управляти підказками з їх допомогою.
+        В один момент може бути показана лише одна підказка
+      </p>
+  </p>
+  <p><strong>Пояснення:</strong>
+      Основна логіка коду виконується в обробниках подій document.onmouseover та document.onmouseout. Коли відбувається подія
+      mouseover перевіряється, чи міститься у цьому елементі атрибут data-tooltip. Якщо так створюється новий елемент div.
+        Потім визначається позиція підказки відносно елементу на який наведено курсор.
+        Координати елементу отримуються за допомогою getBoundingClientRect(), який повертає прямокутник, що обмежує елемент із
+        відстанями до границю вікна перегляду. З цих координат вираховується положення підказки. Вона розташовується зверху
+        елемента, а якзо підказка виходить за межі вікна, то знизу від елемента.
+        К обробнику подій mouseout відказка видаляється з dom, якщо вона була створена. Зовнішній вигляд класу визначається за
+        допомогою CSS класу "tooltip"
+      <h4>tooltipElem = null;</h4>
+      <h4>Встановлення null може виконувати к-ка ф-цій:</h4>
+        <ul>
+          <li> Очищення пам'яті. Після видалення , посилання на елемент може зберігатись в змінній tooltipElem. Встановлення null
+          позначає що цей елемент більше не існує.</li>
+          <li>Індикатор наявності елемента:
+          Після видалення елемента і становлення null умова if (tooltipElem) стає логічною false, що означає що елемент
+          відсутній</li>
+          <li>Можливість повторного використання змінної.
+          Після істановлення null змінна може використовуватись повторно для інших цілей. Наприклад після видаленян, змінна може
+          бути використана для зберігання посилання в майбутньому</li>
+        </ul>
+        
+  </p>
+
+  <button data-tooltip="Підказка довша за елемент">Кнопка1</button>
+  <button data-tooltip="Підказка">Кнопка2</button>
+
+  <script>
+    let tooltipElem;
+    document.onmouseover = function (event) {
+      let target = event.target;//Ц-ль події або елемент на який наведено курсор миші
+      //Якщо є підказка
+      let tooltipHtml = target.dataset.tooltip;
+      if (!tooltipHtml) return;  // Якщо атрибут data-tooltip не існує, не робить нічього
+      //Створення елементу для підказки якщо data-tooltip існує
+      //Елемент підказки
+      tooltipElem = document.createElement('div'); //Елемент відображення підказки  tooltip
+      tooltipElem.className = 'tooltip'; // Задається клас tooltip  для div
+      tooltipElem.innerHTML = tooltipHtml; // Встановлюється вміст підказки який береться з атрибуту data-tooltip який лежить в змінній tooltipHtml
+      document.body.append(tooltipElem); // Додається до тіла документу щоб відобразитись на сторінці
+      // ОБчисленян позиції підказки відносно цільового елемента
+      let coords = target.getBoundingClientRect();
+      //Якщо підказка виходить за межі лівого краю вікна, то значення left обмежується значенням 0 (if (left < 0) left = 0), щоб підказка не виходила за межі екрану
+      let left = coords.left + (target.offsetWidth - tooltipElem.offsetWidth) / 2;
+      if (left < 0) left = 0; // Не заходити за лівий екран вікна
+                  // tooltipElem.offsetHeight висота підказки
+                  //5 - віступ від вертикальної кородинати цільового елемента
+      let top = coords.top - tooltipElem.offsetHeight - 5;
+      if (top < 0) {
+        //Якщо підказка не поміщяється зверхк, то розмістити її знизу
+        top = coords.top + target.offsetHeight + 5;
+      }
+
+      tooltipElem.style.left = left + 'px';
+      tooltipElem.style.top = top + 'px'
+    }
+    document.onmouseout = function (e) {
+      if (tooltipElem) {  // перевіряється чи існує елемент з ім'ям tooltipElem
+        tooltipElem.remove(); //Видаляється 
+        tooltipElem = null; //Показує що елемент більше не існує
+      }
+    };
+  </script>
+
+</body>
+
+</html>
